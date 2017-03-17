@@ -9,21 +9,21 @@
   <title>CSS命名规范——BEM思想 | PhoenixAve</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="转载自CSS命名规范——BEM思想（非常赞的规范）
-人们问我最多的问题之一是在CSS类名中“–”和“__”是什么意思？它们的出现是源于BEM和Nicolas Gallagher…
-BEM的意思就是块（block）、元素（element）、修饰符（modifier）,是由Yandex团队提出的一种前端命名方法论。这种巧妙的命名方法让你的CSS类对其他开发者来说更加透明而且更有意义。BEM命名约定更加">
+人们问我最多的问题之一是在CSS类名中--和__是什么意思？它们的出现是源于BEM和Nicolas Gallagher…
+BEM的意思就是块（block）、元素（element）、修饰符（modifier）,是由Yandex团队提出的一种前端命名方法论。这种巧妙的命名方法让你的CSS类对其他开发者来说更加透明而且更有意义。BEM命名约定更加严格，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS命名规范——BEM思想">
 <meta property="og:url" content="http://yoursite.com/2017/03/15/Others/CSS命名规范——BEM思想/index.html">
 <meta property="og:site_name" content="PhoenixAve">
 <meta property="og:description" content="转载自CSS命名规范——BEM思想（非常赞的规范）
-人们问我最多的问题之一是在CSS类名中“–”和“__”是什么意思？它们的出现是源于BEM和Nicolas Gallagher…
-BEM的意思就是块（block）、元素（element）、修饰符（modifier）,是由Yandex团队提出的一种前端命名方法论。这种巧妙的命名方法让你的CSS类对其他开发者来说更加透明而且更有意义。BEM命名约定更加">
-<meta property="og:updated_time" content="2017-03-17T11:47:27.980Z">
+人们问我最多的问题之一是在CSS类名中--和__是什么意思？它们的出现是源于BEM和Nicolas Gallagher…
+BEM的意思就是块（block）、元素（element）、修饰符（modifier）,是由Yandex团队提出的一种前端命名方法论。这种巧妙的命名方法让你的CSS类对其他开发者来说更加透明而且更有意义。BEM命名约定更加严格，">
+<meta property="og:updated_time" content="2017-03-17T12:14:02.252Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS命名规范——BEM思想">
 <meta name="twitter:description" content="转载自CSS命名规范——BEM思想（非常赞的规范）
-人们问我最多的问题之一是在CSS类名中“–”和“__”是什么意思？它们的出现是源于BEM和Nicolas Gallagher…
-BEM的意思就是块（block）、元素（element）、修饰符（modifier）,是由Yandex团队提出的一种前端命名方法论。这种巧妙的命名方法让你的CSS类对其他开发者来说更加透明而且更有意义。BEM命名约定更加">
+人们问我最多的问题之一是在CSS类名中--和__是什么意思？它们的出现是源于BEM和Nicolas Gallagher…
+BEM的意思就是块（block）、元素（element）、修饰符（modifier）,是由Yandex团队提出的一种前端命名方法论。这种巧妙的命名方法让你的CSS类对其他开发者来说更加透明而且更有意义。BEM命名约定更加严格，">
   
     <link rel="alternative" href="/atom.xml" title="PhoenixAve" type="application/atom+xml">
   
@@ -180,15 +180,15 @@ BEM的意思就是块（block）、元素（element）、修饰符（modifier）
     <div class="article-entry" itemprop="articleBody">
       
         <p>转载自<a href="http://www.cnblogs.com/dujishi/p/5862911.html" target="_blank" rel="external">CSS命名规范——BEM思想（非常赞的规范）</a></p>
-<p>人们问我最多的问题之一是在CSS类名中“–”和“__”是什么意思？它们的出现是源于<a href="http://bem.info/" target="_blank" rel="external">BEM</a>和<a href="http://twitter.com/necolas" target="_blank" rel="external">Nicolas Gallagher</a>…</p>
+<p>人们问我最多的问题之一是在CSS类名中<code>--</code>和<code>__</code>是什么意思？它们的出现是源于<a href="http://bem.info/" target="_blank" rel="external">BEM</a>和<a href="http://twitter.com/necolas" target="_blank" rel="external">Nicolas Gallagher</a>…</p>
 <p>BEM的意思就是块（block）、元素（element）、修饰符（modifier）,是由<a href="http://yandex.ru/" target="_blank" rel="external">Yandex</a>团队提出的一种前端命名方法论。这种巧妙的命名方法让你的CSS类对其他开发者来说更加透明而且更有意义。BEM命名约定更加严格，而且包含更多的信息，它们用于一个团队开发一个耗时的大项目。</p>
 <p>重要的是要注意，我使用的基于BEM的命名方式是经过<a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture" target="_blank" rel="external">Nicolas Gallagher修改过的</a>。这篇文章中介绍的这种命名技术并不是原始的BEM，但却是一个我更喜欢的改进版。无论实际使用了什么样的符号，它们其实都是基于同样的BEM原则。</p>
 <a id="more"></a>
 <p>命名约定的模式如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.block</span>&#123;&#125;  </div><div class="line"><span class="selector-class">.block__element</span>&#123;&#125;  </div><div class="line"><span class="selector-class">.block--modifier</span>&#123;&#125;</div></pre></td></tr></table></figure></p>
 <ul>
-<li>.block 代表了更高级别的抽象或组件。</li>
-<li>.block__element 代表.block的后代，用于形成一个完整的.block的整体。</li>
-<li>.block–modifier代表.block的不同状态或不同版本。</li>
+<li><code>.block</code> 代表了更高级别的抽象或组件。</li>
+<li><code>.block__element</code> 代表.block的后代，用于形成一个完整的.block的整体。</li>
+<li><code>.block--modifier</code>代表.block的不同状态或不同版本。</li>
 </ul>
 <p>之所以使用两个连字符和下划线而不是一个，是为了让你自己的块可以用单个连字符来界定，如：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.site-search</span>&#123;&#125; <span class="comment">/* 块 */</span>  </div><div class="line"><span class="selector-class">.site-search__field</span>&#123;&#125; <span class="comment">/* 元素 */</span>  </div><div class="line"><span class="selector-class">.site-search--full</span>&#123;&#125; <span class="comment">/* 修饰符 */</span></div></pre></td></tr></table></figure></p>
 <p>BEM的关键是光凭名字就可以告诉其他开发者某个标记是用来干什么的。通过浏览HTML代码中的class属性，你就能够明白模块之间是如何关联的：有一些仅仅是组件，有一些则是这些组件的子孙或者是元素,还有一些是组件的其他形态或者是修饰符。我们用一个类比/模型来思考一下下面的这些元素是怎么关联的：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.person</span>&#123;&#125;  </div><div class="line"><span class="selector-class">.person__hand</span>&#123;&#125;  </div><div class="line"><span class="selector-class">.person--female</span>&#123;&#125;  </div><div class="line"><span class="selector-class">.person--female__hand</span>&#123;&#125;  </div><div class="line"><span class="selector-class">.person__hand--left</span>&#123;&#125;</div></pre></td></tr></table></figure></p>

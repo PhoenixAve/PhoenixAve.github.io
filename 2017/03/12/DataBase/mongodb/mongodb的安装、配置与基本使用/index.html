@@ -18,7 +18,7 @@
 为什么选择MongoDB?1.只要会js/json就会mongodb(学习成本低)2.">
 <meta property="og:image" content="http://yoursite.com/2017/03/12/DataBase/mongodb/mongodb的安装、配置与基本使用/mongodb下载.png">
 <meta property="og:image" content="http://yoursite.com/2017/03/12/DataBase/mongodb/mongodb的安装、配置与基本使用/mongodb数据存储结构.png">
-<meta property="og:updated_time" content="2017-03-17T11:36:38.110Z">
+<meta property="og:updated_time" content="2017-03-17T12:32:09.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb的安装、配置与基本使用">
 <meta name="twitter:description" content="相关网址MongoDB官网:https://www.mongodb.com/下载地址:https://www.mongodb.com/download-center?jmp=nav#community菜鸟教程：http://www.runoob.com/mongodb/mongodb-tutorial.html
@@ -192,7 +192,7 @@
 <li>如果你的电脑是32位的,再安装32位的mongodb软件 mongodb-win32-i386-3.2.11-signed.msi</li>
 </ol>
 <h3 id="mongodb配置"><a href="#mongodb配置" class="headerlink" title="mongodb配置"></a>mongodb配置</h3><h4 id="创建数据目录-必须"><a href="#创建数据目录-必须" class="headerlink" title="创建数据目录(必须)"></a>创建数据目录(必须)</h4><p>我们在安装完成MongoDB后需要创建一个存放数据的目录。请注意，数据目录应该放在根目录下（(如： C:\ 或者 D:\ 等 ),数据目录的命名随意,比如我就命名 mongodb_datas</p>
-<h4 id="启动服务器-必须"><a href="#启动服务器-必须" class="headerlink" title="启动服务器(必须)"></a>启动服务器(必须)</h4><ul>
+<h4 id="启动服务器-必须"><a href="#启动服务器-必须" class="headerlink" title="启动服务器(必须)"></a>启动服务器(必须)</h4><ol>
 <li>启动MongoDB服务器的方式一：通过终端指令去启动<ul>
 <li>首先在终端切换到你的MongoDB的安装目录的bin目录下(当然如果配置了环境变量在哪个目录下都可以了)</li>
 <li>在终端执行: mongod.exe –dbpath c:\mongodb_datas ,如果成功启动就表示一切都OK了</li>
@@ -203,21 +203,28 @@
 </li>
 </ul>
 </li>
-</ul>
+</ol>
 <pre><code>- 执行完上面的命令并成功开启 MongoDB 数据服务实例之后，就把该控制台最小化到一边就可以了，
 - 千万不要关闭，否则无法连接，如果对数据库的操作结束，可以打开该控制台通过 `Ctrl + C` 关闭。
 </code></pre><ol>
-<li>启动MongoDB服务器的方式二:方式一的延续,把上面的指令做成一个批处理文件.bat<br> 新建一个文本文件修改后缀为<code>.bat</code>，以记事本的方式打开，输入<code>mongod.exe --dbpath c:\mongodb_datas</code></li>
+<li><p>启动MongoDB服务器的方式二:方式一的延续,把上面的指令做成一个批处理文件.bat<br> 新建一个文本文件修改后缀为<code>.bat</code>，以记事本的方式打开，输入<code>mongod.exe --dbpath c:\mongodb_datas</code></p>
+</li>
 <li><p>启动MongoDB服务器的方式三:将MongoDB服务器作为Windows服务运行<br> 以<strong>管理员的身份</strong>打开命令行输入下面的</p>
-<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod.exe --bind_ip 127.0.0.1 --logpath <span class="string">"C:/mongodb_datas/server_log/mongodb.log"</span> --logappend --dbpath <span class="string">"c:/mongodb_datas"</span> --port 27017 --serviceName <span class="string">"MongoDBServer"</span> --serviceDisplayName <span class="string">"MongoDBServerDisplayName"</span> --install</div></pre></td></tr></table></figure>
-</code></pre><p> 补充:从Windows服务中卸载 MongoDB 服务</p>
-<pre><code>1.先停止要删除的服务(比如MongoDBServer)
-2.以管理员身份运行cmd,在cmd中输入: sc delete 服务名称(比如MongoDBServer)
-3.千万不要删错了，不然你的系统可能就挂了
-</code></pre><p> 注意点:</p>
-<pre><code>1.mongodb.log 这个日志文件一定要先创建好,才能执行指令
-2.必须要以管理员的身份打开cmd窗口,并运行
-</code></pre></li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod.exe --bind_ip 127.0.0.1 --logpath <span class="string">"C:/mongodb_datas/server_log/mongodb.log"</span> --logappend --dbpath <span class="string">"c:/mongodb_datas"</span> --port 27017 --serviceName <span class="string">"MongoDBServer"</span> --serviceDisplayName <span class="string">"MongoDBServerDisplayName"</span> --install</div></pre></td></tr></table></figure>
+</li>
+<li><p>补充:从Windows服务中卸载 MongoDB 服务</p>
+<ol>
+<li>先停止要删除的服务(比如MongoDBServer)</li>
+<li>以管理员身份运行cmd,在cmd中输入: sc delete 服务名称(比如MongoDBServer)</li>
+<li>千万不要删错了，不然你的系统可能就挂了</li>
+</ol>
+</li>
+<li><p>注意点:</p>
+<ol>
+<li>mongodb.log 这个日志文件一定要先创建好,才能执行指令</li>
+<li>必须要以管理员的身份打开cmd窗口,并运行</li>
+</ol>
+</li>
 </ol>
 <h3 id="MongoDB-数据库存储结构"><a href="#MongoDB-数据库存储结构" class="headerlink" title="MongoDB 数据库存储结构"></a>MongoDB 数据库存储结构</h3><p><img src="/2017/03/12/DataBase/mongodb/mongodb的安装、配置与基本使用/mongodb数据存储结构.png" alt="mongodb数据存储结构"></p>
 <p>和Excel对比一下即可明</p>
@@ -251,37 +258,30 @@
 5. 文档的结构可以随意,但是必须统一,也就是说,同一个集合中,所有的文档一定要遵守相同的数据结构
 </code></pre><p>其他:<br>    <code>集合</code>的作用就是用来隔离数据,分门别类的存储数据</p>
 <h3 id="操作MongoDB的步骤"><a href="#操作MongoDB的步骤" class="headerlink" title="操作MongoDB的步骤"></a>操作MongoDB的步骤</h3><p>1.创建数据库中数据的存储目录<br>2.启动MongoDB的服务实例<br>3.创建数据库<br>4.创建集合<br>5.创建文档</p>
-<hr>
 <h3 id="如何连接到MongoDB服务器并且操作它？"><a href="#如何连接到MongoDB服务器并且操作它？" class="headerlink" title="如何连接到MongoDB服务器并且操作它？"></a>如何连接到MongoDB服务器并且操作它？</h3><p><strong>注意：在进行连接之前请确保你的服务实例是开启状态的（不要关闭刚才开启的数据服务实例）。</strong></p>
-<pre><code>可以使用两种方式来连接到MongoDB服务器并且操作它
+<p>可以使用两种方式来连接到MongoDB服务器并且操作它</p>
+<ol>
+<li><p>连接方式1:使用MongoDB自带的MongoDB后台管理 Shell</p>
+<pre><code>在终端中输入 `mongo` 或是 `mongo --host 127.0.0.1 --port 27017`
 
-连接方式1:使用MongoDB自带的MongoDB后台管理 Shell
-    在终端中输入 mongo 或是 mongo --host 127.0.0.1 --port 27017
+mongo 命令默认去连接本机上的 MongoDB 服务实例：`127.0.0.1:27017`，可以通过下面的命令
+指定连接的主机名和端口号：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo --host 127.0.0.1 --port 27017</div></pre></td></tr></table></figure>
 
-    mongo 命令默认去连接本机上的 MongoDB 服务实例：`127.0.0.1:27017`，可以通过下面的命令
-    指定连接的主机名和端口号：
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo --host 127.0.0.1 --port 27017</div></pre></td></tr></table></figure>
+如果看到类似于如下的字样说明连接成功：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">MongoDB shell version v3.4.2</div><div class="line">connecting to: mongodb://127.0.0.1:27017</div><div class="line">MongoDB server version: 3.4.2</div><div class="line">Server has startup warnings:</div><div class="line">2017-01-18T18:49:53.865+0800 I CONTROL  [initandlisten]</div><div class="line">2017-01-18T18:49:53.865+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled <span class="keyword">for</span> the database.</div><div class="line">2017-01-18T18:49:53.866+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.</div><div class="line">2017-01-18T18:49:53.866+0800 I CONTROL  [initandlisten]</div><div class="line">&gt;</div></pre></td></tr></table></figure>
 
-
-    如果看到类似于如下的字样说明连接成功：
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">MongoDB shell version v3.4.2</div><div class="line">connecting to: mongodb://127.0.0.1:27017</div><div class="line">MongoDB server version: 3.4.2</div><div class="line">Server has startup warnings:</div><div class="line">2017-01-18T18:49:53.865+0800 I CONTROL  [initandlisten]</div><div class="line">2017-01-18T18:49:53.865+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.</div><div class="line">2017-01-18T18:49:53.866+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.</div><div class="line">2017-01-18T18:49:53.866+0800 I CONTROL  [initandlisten]</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-
-    如果提示 “无法连接主机”，请检查你的 MongoDB 数据服务实例是否开启。
-
-操作方式1:在终端中使用mongodb的指令进行操作
-
-        常见指令:
-             见下一个知识点
-
-
-连接及操作方式2:使用图形化客户端工具:
-    robomongo(跨平台) : https://robomongo.org/download
-</code></pre><hr>
-<h3 id="基本操作命令"><a href="#基本操作命令" class="headerlink" title="基本操作命令"></a>基本操作命令</h3><pre><code>可以参考:
-    http://www.yiibai.com/mongodb/mongodb_create_collection.html
-
-    http://www.runoob.com/mongodb/mongodb-tutorial.html
-</code></pre><ul>
+如果提示 “无法连接主机”，请检查你的 MongoDB 数据服务实例是否开启。
+</code></pre></li>
+<li><p>操作方式1:在终端中使用mongodb的指令进行操作</p>
+<p> 常见指令：见下一个知识点</p>
+</li>
+</ol>
+<ol>
+<li>连接及操作方式2:使用图形化客户端工具：<br> robomongo(跨平台) : <a href="https://robomongo.org/download" target="_blank" rel="external">https://robomongo.org/download</a></li>
+</ol>
+<h3 id="基本操作命令"><a href="#基本操作命令" class="headerlink" title="基本操作命令"></a>基本操作命令</h3><p>可以参考:<br>    <a href="http://www.yiibai.com/mongodb/mongodb_create_collection.html" target="_blank" rel="external">http://www.yiibai.com/mongodb/mongodb_create_collection.html</a><br>    <a href="http://www.runoob.com/mongodb/mongodb-tutorial.html" target="_blank" rel="external">http://www.runoob.com/mongodb/mongodb-tutorial.html</a></p>
+<ul>
 <li><code>show dbs</code><ul>
 <li>查看当前服务实例上所有的数据库</li>
 </ul>
@@ -330,12 +330,10 @@
 </ul>
 </li>
 <li><code>exit</code> 退出当前操作</li>
-<li><p><code>cls</code> 清屏</p>
-<p>  注意点:更新和删除时一般都需要带条件,除非是全部更新与全部删除,不过全部更新与全部删除这样很危险,实际操作过程中很少</p>
-</li>
+<li><code>cls</code> 清屏</li>
 </ul>
-<h2 id="使用-Node-操作-MongoDB"><a href="#使用-Node-操作-MongoDB" class="headerlink" title="使用 Node 操作 MongoDB"></a>使用 Node 操作 MongoDB</h2><p>安装 MongoDB 官方提供的驱动包：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save mongodb</div></pre></td></tr></table></figure>
+<p>注意点：更新和删除时一般都需要带条件，除非是全部更新与全部删除，不过全部更新与全部删除这样很危险,实际操作过程中很少</p>
+<h3 id="使用-Node-操作-MongoDB"><a href="#使用-Node-操作-MongoDB" class="headerlink" title="使用 Node 操作 MongoDB"></a>使用 Node 操作 MongoDB</h3><p>安装 <a href="https://www.mongodb.com/" target="_blank" rel="external">MongoDB</a> 官方提供的驱动包：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save mongodb</div></pre></td></tr></table></figure></p>
 <p>具体操作方式请参考官方文档：<a href="https://www.npmjs.com/package/mongodb" target="_blank" rel="external">https://www.npmjs.com/package/mongodb</a></p>
 
       
