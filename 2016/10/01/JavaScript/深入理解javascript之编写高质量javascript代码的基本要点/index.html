@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>深入理解javascript之编写高质量javascript代码的基本要点 | PhoenixAve</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="才华横溢的Stoyan Stefanov，在他写的由O’Reilly初版的新书《JavaScript Patterns》(JavaScript模式)中，我想要是为我们的读者贡献其摘要，那会是件很美妙的事情。具体一点就是编写高质量JavaScript的一些要素，例如避免全局变量，使用单变量声明，在循环中预缓存length(长度)，遵循代码阅读，以及更多。
+此摘要也包括一些与代码不太相关的习惯，但对整">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解javascript之编写高质量javascript代码的基本要点">
+<meta property="og:url" content="http://yoursite.com/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/index.html">
+<meta property="og:site_name" content="PhoenixAve">
+<meta property="og:description" content="才华横溢的Stoyan Stefanov，在他写的由O’Reilly初版的新书《JavaScript Patterns》(JavaScript模式)中，我想要是为我们的读者贡献其摘要，那会是件很美妙的事情。具体一点就是编写高质量JavaScript的一些要素，例如避免全局变量，使用单变量声明，在循环中预缓存length(长度)，遵循代码阅读，以及更多。
+此摘要也包括一些与代码不太相关的习惯，但对整">
+<meta property="og:updated_time" content="2017-03-17T15:53:44.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解javascript之编写高质量javascript代码的基本要点">
+<meta name="twitter:description" content="才华横溢的Stoyan Stefanov，在他写的由O’Reilly初版的新书《JavaScript Patterns》(JavaScript模式)中，我想要是为我们的读者贡献其摘要，那会是件很美妙的事情。具体一点就是编写高质量JavaScript的一些要素，例如避免全局变量，使用单变量声明，在循环中预缓存length(长度)，遵循代码阅读，以及更多。
+此摘要也包括一些与代码不太相关的习惯，但对整">
+  
+    <link rel="alternative" href="/atom.xml" title="PhoenixAve" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.2d7529.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/img/head.jpg" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">PhoenixAve</a></h1>
+		</hgroup>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/img/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">PhoenixAve</h1>
+			</hgroup>
+			
+			
+			
+				
+			
+				
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 50%">
+				
+				
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-JavaScript/深入理解javascript之编写高质量javascript代码的基本要点" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深入理解javascript之编写高质量javascript代码的基本要点
+    </h1>
+  
+
+        
+        <a href="/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/" class="archive-article-date">
+  	<time datetime="2016-10-01T13:50:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>才华横溢的<a href="http://www.phpied.com/" target="_blank" rel="external">Stoyan Stefanov</a>，在他写的由<a href="http://oreilly.com/" target="_blank" rel="external">O’Reilly</a>初版的新书<a href="http://amzn.to/93szK7" target="_blank" rel="external">《JavaScript Patterns》</a>(JavaScript模式)中，我想要是为我们的读者贡献其摘要，那会是件很美妙的事情。具体一点就是编写高质量JavaScript的一些要素，例如避免全局变量，使用单变量声明，在循环中预缓存length(长度)，遵循代码阅读，以及更多。</p>
+<p>此摘要也包括一些与代码不太相关的习惯，但对整体代码的创建息息相关，包括撰写API文档、执行同行评审以及运行JSLint。这些习惯和最佳做法可以帮助你写出更好的，更易于理解和维护的代码，这些代码在几个月或是几年之后再回过头看看也是会觉得很自豪的。</p>
+<a id="more"></a>
+<h2 id="书写可维护的代码-Writing-Maintainable-Code"><a href="#书写可维护的代码-Writing-Maintainable-Code" class="headerlink" title="书写可维护的代码(Writing Maintainable Code )"></a>书写可维护的代码(Writing Maintainable Code )</h2><p>软件bug的修复是昂贵的，并且随着时间的推移，这些bug的成本也会增加，尤其当这些bug潜伏并慢慢出现在已经发布的软件中时。当你发现bug 的时候就立即修复它是最好的，此时你代码要解决的问题在你脑中还是很清晰的。否则，你转移到其他任务，忘了那个特定的代码，一段时间后再去查看这些代码就 需要：</p>
+<ul>
+<li>花时间学习和理解这个问题</li>
+<li>化时间是了解应该解决的问题代码</li>
+</ul>
+<p>还有问题，特别对于大的项目或是公司，修复bug的这位伙计不是写代码的那个人（且发现bug和修复bug的不是同一个人）。因此，必须降低理解代 码花费的时间，无论是一段时间前你自己写的代码还是团队中的其他成员写的代码。这关系到底线（营业收入）和开发人员的幸福，因为我们更应该去开发新的激动 人心的事物而不是花几小时几天的时间去维护遗留代码。</p>
+<p>另一个相关软件开发生命的事实是，读代码花费的时间要比写来得多。有时候，当你专注并深入思考某个问题的时候，你可以坐下来，一个下午写大量的代码。</p>
+<p>你的代码很能很快就工作了，但是，随着应用的成熟，还会有很多其他的事情发生，这就要求你的进行进行审查，修改，和调整。例如：</p>
+<ul>
+<li>bug是暴露的</li>
+<li>新功能被添加到应用程序</li>
+<li>程序在新的环境下工作（例如，市场上出现新想浏览器）</li>
+<li>代码改变用途</li>
+<li>代码得完全从头重新，或移植到另一个架构上或者甚至使用另一种语言</li>
+</ul>
+<p>由于这些变化，很少人力数小时写的代码最终演变成花数周来阅读这些代码。这就是为什么创建可维护的代码对应用程序的成功至关重要。</p>
+<p>可维护的代码意味着：</p>
+<ul>
+<li>可读的</li>
+<li>一致的</li>
+<li>可预测的</li>
+<li>看上去就像是同一个人写的</li>
+<li>已记录</li>
+</ul>
+<h2 id="最小全局变量-Minimizing-Globals"><a href="#最小全局变量-Minimizing-Globals" class="headerlink" title="最小全局变量(Minimizing Globals)"></a>最小全局变量(Minimizing Globals)</h2><p>JavaScript通过函数管理作用域。在函数内部声明的变量只在这个函数内部，函数外面不可用。另一方面，全局变量就是在任何函数外面声明的或是未声明直接简单使用的。</p>
+<p>每个JavaScript环境有一个全局对象，当你在任意的函数外面使用this的时候可以访问到。你创建的每一个全部变量都成了这个全局对象的属 性。在浏览器中，方便起见，该全局对象有个附加属性叫做window，此window(通常)指向该全局对象本身。下面的代码片段显示了如何在浏览器环境 中创建和访问的全局变量：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">myglobal = <span class="string">"hello"</span>; <span class="comment">// 不推荐写法</span></div><div class="line"><span class="built_in">console</span>.log(myglobal); <span class="comment">// "hello"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.myglobal); <span class="comment">// "hello"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>[<span class="string">"myglobal"</span>]); <span class="comment">// "hello"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.myglobal); <span class="comment">// "hello"</span></div></pre></td></tr></table></figure>
+<h2 id="全局变量的问题"><a href="#全局变量的问题" class="headerlink" title="全局变量的问题"></a>全局变量的问题</h2><p>全局变量的问题在于，你的JavaScript应用程序和web页面上的所有代码都共享了这些全局变量，他们住在同一个全局命名空间，所以当程序的两个不同部分定义同名但不同作用的全局变量的时候，命名冲突在所难免。</p>
+<p>web页面包含不是该页面开发者所写的代码也是比较常见的，例如：</p>
+<ul>
+<li>第三方的JavaScript库</li>
+<li>广告方的脚本代码</li>
+<li>第三方用户跟踪和分析脚本代码</li>
+<li>不同类型的小组件，标志和按钮</li>
+</ul>
+<p>比方说，该第三方脚本定义了一个全局变量，叫做result；接着，在你的函数中也定义一个名为result的全局变量。其结果就是后面的变量覆盖前面的，第三方脚本就一下子嗝屁啦！</p>
+<p>因此，要想和其他脚本成为好邻居的话，尽可能少的使用全局变量是很重要的。在书中后面提到的一些减少全局变量的策略，例如命名空间模式或是函数立即自动执行，但是要想让全局变量少最重要的还是始终使用var来声明变量。</p>
+<p>由于JavaScript的两个特征，不自觉地创建出全局变量是出乎意料的容易。首先，你可以甚至不需要声明就可以使用变量；第二，JavaScript有隐含的全局概念，意味着你不声明的任何变量都会成为一个全局对象属性。参考下面的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">   <span class="comment">// 不推荐写法: 隐式全局变量    result = x + y;</span></div><div class="line">   <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此段代码中的<code>result</code>没有声明。代码照样运作正常，但在调用函数后你最后的结果就多一个全局命名空间，这可以是一个问题的根源。</p>
+<p>经验法则是始终使用var声明变量，正如改进版的sum()函数所演示的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> result = x + y;</div><div class="line">   <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>另一个创建隐式全局变量的反例就是使用任务链进行部分var声明。下面的片段中，<code>a</code>是本地变量但是<code>b</code>确实全局变量，这可能不是你希望发生的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 反例，勿使用 </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> a = b = <span class="number">0</span>;</div><div class="line">   <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此现象发生的原因在于这个从右到左的赋值，首先，是赋值表达式<code>b = 0</code>，此情况下b是未声明的。这个表达式的返回值是0，然后这个0就分配给了通过var定义的这个局部变量a。换句话说，就好比你输入了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = (b = <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>如果你已经准备好声明变量，使用链分配是比较好的做法，不会产生任何意料之外的全局变量，如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> a, b;</div><div class="line">   <span class="comment">// ... a = b = 0; // 两个均局部变量</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>然而，另外一个避免全局变量的原因是可移植性。如果你想你的代码在不同的环境下（主机下）运行，使用全局变量如履薄冰，因为你会无意中覆盖你最初环境下不存在的主机对象（所以你原以为名称可以放心大胆地使用，实际上对于有些情况并不适用）。</p>
+</blockquote>
+<h2 id="忘记var的副作用-Side-Effects-When-Forgetting-var"><a href="#忘记var的副作用-Side-Effects-When-Forgetting-var" class="headerlink" title="忘记var的副作用(Side Effects When Forgetting var)"></a>忘记var的副作用(Side Effects When Forgetting var)</h2><p>隐式全局变量和明确定义的全局变量间有些小的差异，就是通过<code>delete</code>操作符让变量未定义的能力。</p>
+<ul>
+<li>通过var创建的全局变量（任何函数之外的程序中创建）是不能被删除的。</li>
+<li>无var创建的隐式全局变量（无视是否在函数中创建）是能被删除的。</li>
+</ul>
+<p>这表明，在技术上，隐式全局变量并不是真正的全局变量，但它们是全局对象的属性。属性是可以通过<code>delete</code>操作符删除的，而变量是不能的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义三个全局变量</span></div><div class="line"><span class="keyword">var</span> global_var = <span class="number">1</span>;</div><div class="line">global_novar = <span class="number">2</span>; <span class="comment">// 反面教材</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   global_fromfunc = <span class="number">3</span>; <span class="comment">// 反面教材</span></div><div class="line">&#125;());</div><div class="line"></div><div class="line"><span class="comment">// 试图删除</span></div><div class="line"><span class="keyword">delete</span> global_var; <span class="comment">// false</span></div><div class="line"><span class="keyword">delete</span> global_novar; <span class="comment">// true</span></div><div class="line"><span class="keyword">delete</span> global_fromfunc; <span class="comment">// true</span></div><div class="line"><span class="comment">// 测试该删除</span></div><div class="line"><span class="keyword">typeof</span> global_var; <span class="comment">// "number"</span></div><div class="line"><span class="keyword">typeof</span> global_novar; <span class="comment">// "undefined"</span></div><div class="line"><span class="keyword">typeof</span> global_fromfunc; <span class="comment">// "undefined"</span></div></pre></td></tr></table></figure></p>
+<p>在ES5严格模式下，未声明的变量（如在前面的代码片段中的两个反面教材）工作时会抛出一个错误。</p>
+<h2 id="访问全局对象-Access-to-the-Global-Object"><a href="#访问全局对象-Access-to-the-Global-Object" class="headerlink" title="访问全局对象(Access to the Global Object)"></a>访问全局对象(Access to the Global Object)</h2><p>在浏览器中，全局对象可以通过<code>window</code>属性在代码的任何位置访问（除非你做了些比较出格的事情，像是声明了一个名为window的局部变量）。但是在其他环境下，这个方便的属性可能被叫做其他什么东西（甚至在程序中不可用）。如果你需要在没有硬编码的<code>window</code>标识符下访问全局对象，你可以在任何层级的函数作用域中做如下操作：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> global = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
+<p>这种方法可以随时获得全局对象，因为其在函数中被当做函数调用了（不是通过<code>new</code>构造），<code>this</code>总 是指向全局对象。实际上这个病不适用于ECMAScript 5严格模式，所以，在严格模式下时，你必须采取不同的形式。例如，你正在开发一个JavaScript库，你可以将你的代码包裹在一个即时函数中，然后从 全局作用域中，传递一个引用指向this作为你即时函数的参数。</p>
+<h2 id="单var形式（Single-var-Pattern）"><a href="#单var形式（Single-var-Pattern）" class="headerlink" title="单var形式（Single var Pattern）"></a>单var形式（Single var Pattern）</h2><p>在函数顶部使用单var语句是比较有用的一种形式，其好处在于：</p>
+<ul>
+<li>提供了一个单一的地方去寻找功能所需要的所有局部变量</li>
+<li>防止变量在定义之前使用的逻辑错误</li>
+<li>帮助你记住声明的全局变量，因此较少了全局变量//zxx:此处我自己是有点晕乎的…</li>
+<li>少代码（类型啊传值啊单线完成）</li>
+</ul>
+<p>单var形式长得就像下面这个样子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> a = <span class="number">1</span>,</div><div class="line">       b = <span class="number">2</span>,</div><div class="line">       sum = a + b,</div><div class="line">       myobject = &#123;&#125;,</div><div class="line">       i,</div><div class="line">       j;</div><div class="line">   <span class="comment">// function body...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>您可以使用一个var语句声明多个变量，并以逗号分隔。像这种初始化变量同时初始化值的做法是很好的。这样子可以防止逻辑错误（所有未初始化但声明的变量的初始值是<code>undefined</code>）和增加代码的可读性。在你看到代码后，你可以根据初始化的值知道这些变量大致的用途，例如是要当作对象呢还是当作整数来使。</p>
+<p>你也可以在声明的时候做一些实际的工作，例如前面代码中的<code>sum = a + b</code>这个情况，另外一个例子就是当你使用DOM（文档对象模型）引用时，你可以使用单一的var把DOM引用一起指定为局部变量，就如下面代码所示的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateElement</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>),</div><div class="line">       style = el.style;</div><div class="line">   <span class="comment">// 使用el和style干点其他什么事...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="预解析：var散布的问题-Hoisting-A-Problem-with-Scattered-vars"><a href="#预解析：var散布的问题-Hoisting-A-Problem-with-Scattered-vars" class="headerlink" title="预解析：var散布的问题(Hoisting: A Problem with Scattered vars)"></a>预解析：var散布的问题(Hoisting: A Problem with Scattered vars)</h2><p>JavaScript中，你可以在函数的任何位置声明多个var语句，并且它们就好像是在函数顶部声明一样发挥作用，这种行为称为 hoisting（悬置/置顶解析/预解析）。当你使用了一个变量，然后不久在函数中又重新声明的话，就可能产生逻辑错误。对于JavaScript，只 要你的变量是在同一个作用域中（同一函数），它都被当做是声明的，即使是它在var声明前使用的时候。看下面这个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 反例</span></div><div class="line">myname = <span class="string">"global"</span>; <span class="comment">// 全局变量</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(myname); <span class="comment">// "undefined"    </span></div><div class="line">	<span class="keyword">var</span> myname = <span class="string">"local"</span>;</div><div class="line">    alert(myname); <span class="comment">// "local"</span></div><div class="line">&#125;</div><div class="line">func();</div></pre></td></tr></table></figure></p>
+<p>在这个例子中，你可能会以为第一个alert弹出的是”global”，第二个弹出”loacl”。这种期许是可以理解的，因为在第一个alert 的时候，myname未声明，此时函数肯定很自然而然地看全局变量myname，但是，实际上并不是这么工作的。第一个alert会弹 出”undefined”是因为myname被当做了函数的局部变量（尽管是之后声明的），所有的变量声明当被悬置到函数的顶部了。因此，为了避免这种混 乱，最好是预先声明你想使用的全部变量。</p>
+<p>上面的代码片段执行的行为可能就像下面这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">myname = <span class="string">"global"</span>; <span class="comment">// global variable</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> myname; <span class="comment">// 等同于 -&gt; var myname = undefined;  </span></div><div class="line">   alert(myname); <span class="comment">// "undefined"   </span></div><div class="line">   myname = <span class="string">"local"</span>;</div><div class="line">   alert(myname); <span class="comment">// "local"</span></div><div class="line">&#125;</div><div class="line">func();</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>为了完整，我们再提一提执行层面的稍微复杂点的东西。代码处理分两个阶段，第一阶段是变量，函数声明，以及正常格式的参数创建，这是一个解析和进入上下文 的阶段。第二个阶段是代码执行，函数表达式和不合格的标识符（为声明的变量）被创建。但是，出于实用的目的，我们就采用了”hoisting”这个概念， 这种ECMAScript标准中并未定义，通常用来描述行为。</p>
+</blockquote>
+<h2 id="for循环-for-Loops"><a href="#for循环-for-Loops" class="headerlink" title="for循环(for Loops)"></a>for循环(for Loops)</h2><p>在<code>for</code>循环中，你可以循环取得数组或是数组类似对象的值，譬如<code>arguments</code>和<code>HTMLCollection</code>对象。通常的循环形式如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 次佳的循环</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; myarray.length; i++) &#123;</div><div class="line">   <span class="comment">// 使用myarray[i]做点什么</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这种形式的循环的不足在于每次循环的时候数组的长度都要去获取下。这回降低你的代码，尤其当<code>myarray</code>不是数组，而是一个<code>HTMLCollection</code>对象的时候。</p>
+<p><code>HTMLCollections</code>指的是DOM方法返回的对象，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementsByName()</div><div class="line"><span class="built_in">document</span>.getElementsByClassName()</div><div class="line"><span class="built_in">document</span>.getElementsByTagName()</div></pre></td></tr></table></figure></p>
+<p>还有其他一些<code>HTMLCollections</code>，这些是在DOM标准之前引进并且现在还在使用的。有：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.images: 页面上所有的图片元素</div><div class="line"><span class="built_in">document</span>.links : 所有a标签元素</div><div class="line"><span class="built_in">document</span>.forms : 所有表单</div><div class="line"><span class="built_in">document</span>.forms[<span class="number">0</span>].elements : 页面上第一个表单中的所有域</div></pre></td></tr></table></figure></p>
+<p>集合的麻烦在于它们实时查询基本文档（HTML页面）。这意味着每次你访问任何集合的长度，你要实时查询DOM，而DOM操作一般都是比较昂贵的。</p>
+<p>这就是为什么当你循环获取值时，缓存数组(或集合)的长度是比较好的形式，正如下面代码显示的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, max = myarray.length; i &lt; max; i++) &#123;</div><div class="line">   <span class="comment">// 使用myarray[i]做点什么</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样，在这个循环过程中，你只检索了一次长度值。</p>
+<p>在所有浏览器下，循环获取内容时缓存<code>HTMLCollections</code>的长度是更快的，2倍(Safari3)到190倍(IE7)之间。//zxx:此数据貌似很老，仅供参考</p>
+<p>注意到，当你明确想要修改循环中的集合的时候（例如，添加更多的DOM元素），你可能更喜欢长度更新而不是常量。</p>
+<p>伴随着单var形式，你可以把变量从循环中提出来，就像下面这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">looper</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> i = <span class="number">0</span>,</div><div class="line">        max,</div><div class="line">        myarray = [];</div><div class="line">   <span class="comment">// ...   </span></div><div class="line">   <span class="keyword">for</span> (i = <span class="number">0</span>, max = myarray.length; i &lt; max; i++) &#123;</div><div class="line">      <span class="comment">// 使用myarray[i]做点什么   </span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这种形式具有一致性的好处，因为你坚持了单一var形式。不足在于当重构代码的时候，复制和粘贴整个循环有点困难。例如，你从一个函数复制了一个循环到另一个函数，你不得不去确定你能够把<code>i</code>和<code>max</code>引入新的函数（如果在这里没有用的话，很有可能你要从原函数中把它们删掉）。</p>
+<p>最后一个需要对循环进行调整的是使用下面表达式之一来替换<code>i++</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">i = i + <span class="number">1</span></div><div class="line">i += <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>JSLint提示您这样做，原因是<code>++</code>和<code>–-</code>促进了“过分棘手(excessive trickiness)”。//zxx:这里比较难翻译，我想本意应该是让代码变得更加的棘手<br>如果你直接无视它，JSLint的<code>plusplus</code>选项会是<code>false</code>（默认是default）。</p>
+<p>还有两种变化的形式，其又有了些微改进，因为：</p>
+<ul>
+<li>少了一个变量(无max)</li>
+<li>向下数到0，通常更快，因为和0做比较要比和数组长度或是其他不是0的东西作比较更有效率<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//第一种变化的形式：</span></div><div class="line"><span class="keyword">var</span> i, myarray = [];</div><div class="line"><span class="keyword">for</span> (i = myarray.length; i–-;) &#123;</div><div class="line">   <span class="comment">// 使用myarray[i]做点什么</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//第二种使用while循环：</span></div><div class="line"><span class="keyword">var</span> myarray = [],</div><div class="line">    i = myarray.length;</div><div class="line"><span class="keyword">while</span> (i–-) &#123;</div><div class="line">   <span class="comment">// 使用myarray[i]做点什么</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这些小的改进只体现在性能上，此外JSLint会对使用i–-加以抱怨。</p>
+<h2 id="for-in循环-for-in-Loops"><a href="#for-in循环-for-in-Loops" class="headerlink" title="for-in循环(for-in Loops)"></a>for-in循环(for-in Loops)</h2><p><code>for-in</code>循环应该用在非数组对象的遍历上，使用<code>for-in</code>进行循环也被称为“枚举”。</p>
+<p>从技术上将，你可以使用<code>for-in</code>循环数组（因为JavaScript中数组也是对象），但这是不推荐的。因为如果数组对象已被自定义的功能增强，就可能发生逻辑错误。另外，在for-in中，属性列表的顺序（序列）是不能保证的。所以最好数组使用正常的for循环，对象使用for-in循环。</p>
+<p>有个很重要的<code>hasOwnProperty()</code>方法，当遍历对象属性的时候可以过滤掉从原型链上下来的属性。</p>
+<p>思考下面一段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 对象</span></div><div class="line"><span class="keyword">var</span> man = &#123;</div><div class="line">   <span class="attr">hands</span>: <span class="number">2</span>,</div><div class="line">   <span class="attr">legs</span>: <span class="number">2</span>,</div><div class="line">   <span class="attr">heads</span>: <span class="number">1</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 在代码的某个地方</span></div><div class="line"><span class="comment">// 一个方法添加给了所有对象</span></div><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Object</span>.prototype.clone === <span class="string">"undefined"</span>) &#123;</div><div class="line">   <span class="built_in">Object</span>.prototype.clone = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在这个例子中，我们有一个使用对象字面量定义的名叫man的对象。在man定义完成后的某个地方，在对象原型上增加了一个很有用的名叫 clone()的方法。此原型链是实时的，这就意味着所有的对象自动可以访问新的方法。为了避免枚举man的时候出现clone()方法，你需要应用<code>hasOwnProperty()</code>方法过滤原型属性。如果不做过滤，会导致clone()函数显示出来，在大多数情况下这是不希望出现的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1.</span></div><div class="line"><span class="comment">// for-in 循环</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> man) &#123;</div><div class="line">   <span class="keyword">if</span> (man.hasOwnProperty(i)) &#123; <span class="comment">// 过滤      </span></div><div class="line">       <span class="built_in">console</span>.log(i, <span class="string">":"</span>, man[i]);</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 控制台显示结果</span></div><div class="line">hands : 2</div><div class="line">legs : 2</div><div class="line">heads : 1*/</div><div class="line"><span class="comment">// 2.</span></div><div class="line"><span class="comment">// 反面例子:</span></div><div class="line"><span class="comment">// for-in loop without checking hasOwnProperty()</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> man) &#123;</div><div class="line">   <span class="built_in">console</span>.log(i, <span class="string">":"</span>, man[i]);</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">控制台显示结果</div><div class="line">hands : 2</div><div class="line">legs : 2</div><div class="line">heads : 1</div><div class="line">clone: function()</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<p>另外一种使用<code>hasOwnProperty()</code>的形式是取消Object.prototype上的方法。像是：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> man) &#123;</div><div class="line">   <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(man, i)) &#123; <span class="comment">// 过滤      </span></div><div class="line">       <span class="built_in">console</span>.log(i, <span class="string">":"</span>, man[i]);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其好处在于在man对象重新定义hasOwnProperty情况下避免命名冲突。也避免了长属性查找对象的所有方法，你可以使用局部变量“缓存”它。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i, hasOwn = <span class="built_in">Object</span>.prototype.hasOwnProperty;</div><div class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> man) &#123;</div><div class="line">    <span class="keyword">if</span> (hasOwn.call(man, i)) &#123; <span class="comment">// 过滤        </span></div><div class="line">	    <span class="built_in">console</span>.log(i, <span class="string">":"</span>, man[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>严格来说，不使用<code>hasOwnProperty()</code>并不是一个错误。根据任务以及你对代码的自信程度，你可以跳过它以提高些许的循环速度。但是当你对当前对象内容（和其原型链）不确定的时候，添加<code>hasOwnProperty()</code>更加保险些。</p>
+</blockquote>
+<p>格式化的变化（通不过JSLint）会直接忽略掉花括号，把if语句放到同一行上。其优点在于循环语句读起来就像一个完整的想法（每个元素都有一个自己的属性”X”，使用”X”干点什么）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 警告： 通不过JSLint检测</span></div><div class="line"><span class="keyword">var</span> i, hasOwn = <span class="built_in">Object</span>.prototype.hasOwnProperty;</div><div class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> man) <span class="keyword">if</span> (hasOwn.call(man, i)) &#123; <span class="comment">// 过滤    </span></div><div class="line">    <span class="built_in">console</span>.log(i, <span class="string">":"</span>, man[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="（不）扩展内置原型-Not-Augmenting-Built-in-Prototypes"><a href="#（不）扩展内置原型-Not-Augmenting-Built-in-Prototypes" class="headerlink" title="（不）扩展内置原型((Not) Augmenting Built-in Prototypes)"></a>（不）扩展内置原型((Not) Augmenting Built-in Prototypes)</h2><p>扩增构造函数的prototype属性是个很强大的增加功能的方法，但有时候它太强大了。</p>
+<p>增加内置的构造函数原型（如Object(), Array(), 或Function()）挺诱人的，但是这严重降低了可维护性，因为它让你的代码变得难以预测。使用你代码的其他开发人员很可能更期望使用内置的 JavaScript方法来持续不断地工作，而不是你另加的方法。</p>
+<p>另外，属性添加到原型中，可能会导致不使用hasOwnProperty属性时在循环中显示出来，这会造成混乱。</p>
+<p>因此，不增加内置原型是最好的。你可以指定一个规则，仅当下面的条件均满足时例外：</p>
+<ul>
+<li>可以预期将来的ECMAScript版本或是JavaScript实现将一直将此功能当作内置方法来实现。例如，你可以添加ECMAScript 5中描述的方法，一直到各个浏览器都迎头赶上。这种情况下，你只是提前定义了有用的方法。</li>
+<li>如果您检查您的自定义属性或方法已不存在——也许已经在代码的其他地方实现或已经是你支持的浏览器JavaScript引擎部分。</li>
+<li>你清楚地文档记录并和团队交流了变化。</li>
+</ul>
+<p>如果这三个条件得到满足，你可以给原型进行自定义的添加，形式如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Object</span>.protoype.myMethod !== <span class="string">"function"</span>) &#123;</div><div class="line">   <span class="built_in">Object</span>.protoype.myMethod = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// 实现...   </span></div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="switch模式-switch-Pattern"><a href="#switch模式-switch-Pattern" class="headerlink" title="switch模式(switch Pattern)"></a>switch模式(switch Pattern)</h2><p>你可以通过类似下面形式的switch语句增强可读性和健壮性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> inspect_me = <span class="number">0</span>,</div><div class="line">    result = <span class="string">''</span>;</div><div class="line"><span class="keyword">switch</span> (inspect_me) &#123;</div><div class="line"><span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">   result = <span class="string">"zero"</span>;</div><div class="line">   <span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">   result = <span class="string">"one"</span>;</div><div class="line">   <span class="keyword">break</span>;</div><div class="line"><span class="keyword">default</span>:</div><div class="line">   result = <span class="string">"unknown"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个简单的例子中所遵循的风格约定如下：</p>
+<ul>
+<li>每个case和switch对齐（花括号缩进规则除外）</li>
+<li>每个case中代码缩进</li>
+<li>每个case以break清除结束</li>
+<li>避免贯穿（故意忽略break）。如果你非常确信贯穿是最好的方法，务必记录此情况，因为对于有些阅读人而言，它们可能看起来是错误的。</li>
+<li>以default结束switch：确保总有健全的结果，即使无情况匹配。</li>
+</ul>
+<h2 id="避免隐式类型转换-Avoiding-Implied-Typecasting"><a href="#避免隐式类型转换-Avoiding-Implied-Typecasting" class="headerlink" title="避免隐式类型转换(Avoiding Implied Typecasting )"></a>避免隐式类型转换(Avoiding Implied Typecasting )</h2><p>JavaScript的变量在比较的时候会隐式类型转换。这就是为什么一些诸如：false == 0 或 “” == 0 返回的结果是true。为避免引起混乱的隐含类型转换，在你比较值和表达式类型的时候始终使用===和!==操作符。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> zero = <span class="number">0</span>;</div><div class="line"><span class="keyword">if</span> (zero === <span class="literal">false</span>) &#123;</div><div class="line">   <span class="comment">// 不执行，因为zero为0, 而不是false</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 反面示例</span></div><div class="line"><span class="keyword">if</span> (zero == <span class="literal">false</span>) &#123;</div><div class="line">   <span class="comment">// 执行了...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>还有另外一种思想观点认为==就足够了===是多余的。例如，当你使用typeof你就知道它会返回一个字符串，所以没有使用严格相等的理由。然而，JSLint要求严格相等，它使代码看上去更有一致性，可以降低代码阅读时的精力消耗。（“==是故意的还是一个疏漏？”）</p>
+<h2 id="避免-Avoiding-eval"><a href="#避免-Avoiding-eval" class="headerlink" title="避免(Avoiding) eval()"></a>避免(Avoiding) eval()</h2><p>如果你现在的代码中使用了eval()，记住该咒语“eval()是魔鬼”。此方法接受任意的字符串，并当作JavaScript代码来处理。当有 问题的代码是事先知道的（不是运行时确定的），没有理由使用eval()。如果代码是在运行时动态生成，有一个更好的方式不使用eval而达到同样的目 标。例如，用方括号表示法来访问动态属性会更好更简单：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 反面示例</span></div><div class="line"><span class="keyword">var</span> property = <span class="string">"name"</span>;</div><div class="line">alert(<span class="built_in">eval</span>(<span class="string">"obj."</span> + property));</div><div class="line"></div><div class="line"><span class="comment">// 更好的</span></div><div class="line"><span class="keyword">var</span> property = <span class="string">"name"</span>;</div><div class="line">alert(obj[property]);</div></pre></td></tr></table></figure></p>
+<p>使用eval()也带来了安全隐患，因为被执行的代码（例如从网络来）可能已被篡改。这是个很常见的反面教材，当处理Ajax请求得到的JSON 相应的时候。在这些情况下，最好使用JavaScript内置方法来解析JSON相应，以确保安全和有效。若浏览器不支持JSON.parse()，你可 以使用来自JSON.org的库。</p>
+<p>同样重要的是要记住，给setInterval(), setTimeout()和Function()构造函数传递字符串，大部分情况下，与使用eval()是类似的，因此要避免。在幕后，JavaScript仍需要评估和执行你给程序传递的字符串：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 反面示例</span></div><div class="line">setTimeout(<span class="string">"myFunc()"</span>, <span class="number">1000</span>);</div><div class="line">setTimeout(<span class="string">"myFunc(1, 2, 3)"</span>, <span class="number">1000</span>);</div><div class="line"></div><div class="line"><span class="comment">// 更好的</span></div><div class="line">setTimeout(myFunc, <span class="number">1000</span>);</div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   myFunc(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</div><div class="line">&#125;, <span class="number">1000</span>);</div></pre></td></tr></table></figure></p>
+<p>使用新的Function()构造就类似于eval()，应小心接近。这可能是一个强大的构造，但往往被误用。如果你绝对必须使用eval()，你 可以考虑使用new Function()代替。有一个小的潜在好处，因为在新Function()中作代码评估是在局部函数作用域中运行，所以代码中任何被评估的通过var 定义的变量都不会自动变成全局变量。另一种方法来阻止自动全局变量是封装eval()调用到一个即时函数中。</p>
+<p>考虑下面这个例子，这里仅<code>un</code>作为全局变量污染了命名空间。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> un);    <span class="comment">// "undefined"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> deux); <span class="comment">// "undefined"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> trois); <span class="comment">// "undefined"</span></div><div class="line"><span class="keyword">var</span> jsstring = <span class="string">"var un = 1; console.log(un);"</span>;</div><div class="line"><span class="built_in">eval</span>(jsstring); <span class="comment">// logs "1"</span></div><div class="line">jsstring = <span class="string">"var deux = 2; console.log(deux);"</span>;</div><div class="line"><span class="keyword">new</span> <span class="built_in">Function</span>(jsstring)(); <span class="comment">// logs "2"</span></div><div class="line">jsstring = <span class="string">"var trois = 3; console.log(trois);"</span>;</div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="built_in">eval</span>(jsstring);</div><div class="line">&#125;()); <span class="comment">// logs "3"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> un); <span class="comment">// number</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> deux); <span class="comment">// "undefined"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> trois); <span class="comment">// "undefined"</span></div></pre></td></tr></table></figure></p>
+<p>另一间eval()和Function构造不同的是eval()可以干扰作用域链，而Function()更安分守己些。不管你在哪里执行 Function()，它只看到全局作用域。所以其能很好的避免本地变量污染。在下面这个例子中，eval()可以访问和修改它外部作用域中的变量，这是 Function做不来的（注意到使用Function和new Function是相同的）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> local = <span class="number">1</span>;</div><div class="line">   <span class="built_in">eval</span>(<span class="string">"local = 3; console.log(local)"</span>); <span class="comment">// logs "3"   </span></div><div class="line">   <span class="built_in">console</span>.log(local); <span class="comment">// logs "3"</span></div><div class="line">&#125;());</div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> local = <span class="number">1</span>;</div><div class="line">   <span class="built_in">Function</span>(<span class="string">"console.log(typeof local);"</span>)(); <span class="comment">// logs undefined</span></div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
+<h2 id="parseInt-下的数值转换-Number-Conversions-with-parseInt"><a href="#parseInt-下的数值转换-Number-Conversions-with-parseInt" class="headerlink" title="parseInt()下的数值转换(Number Conversions with parseInt())"></a>parseInt()下的数值转换(Number Conversions with parseInt())</h2><p>使用parseInt()你可以从字符串中获取数值，该方法接受另一个基数参数，这经常省略，但不应该。当字符串以”0″开头的时候就有可能会出问 题，例如，部分时间进入表单域，在ECMAScript 3中，开头为”0″的字符串被当做8进制处理了，但这已在ECMAScript 5中改变了。为了避免矛盾和意外的结果，总是指定基数参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> month = <span class="string">"06"</span>,</div><div class="line">    year = <span class="string">"09"</span>;</div><div class="line">month = <span class="built_in">parseInt</span>(month, <span class="number">10</span>);</div><div class="line">year = <span class="built_in">parseInt</span>(year, <span class="number">10</span>);</div></pre></td></tr></table></figure></p>
+<p>此例中，如果你忽略了基数参数，如parseInt(year)，返回的值将是0，因为“09”被当做8进制（好比执行 parseInt( year, 8 )），而09在8进制中不是个有效数字。</p>
+<p>替换方法是将字符串转换成数字，包括：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">+<span class="string">"08"</span> <span class="comment">// 结果是 8</span></div><div class="line"><span class="built_in">Number</span>(<span class="string">"08"</span>) <span class="comment">// 8</span></div></pre></td></tr></table></figure></p>
+<p>这些通常快于parseInt()，因为parseInt()方法，顾名思意，不是简单地解析与转换。但是，如果你想输入例如“08 hello”，parseInt()将返回数字，而其它以NaN告终。</p>
+<h2 id="编码规范-Coding-Conventions"><a href="#编码规范-Coding-Conventions" class="headerlink" title="编码规范(Coding Conventions)"></a>编码规范(Coding Conventions)</h2><p>建立和遵循编码规范是很重要的，这让你的代码保持一致性，可预测，更易于阅读和理解。一个新的开发者加入这个团队可以通读规范，理解其它团队成员书写的代码，更快上手干活。</p>
+<p>许多激烈的争论发生会议上或是邮件列表上，问题往往针对某些代码规范的特定方面（例如代码缩进，是Tab制表符键还是space空格键）。如果你是 你组织中建议采用规范的，准备好面对各种反对的或是听起来不同但很强烈的观点。要记住，建立和坚定不移地遵循规范要比纠结于规范的细节重要的多。</p>
+<h2 id="缩进-Indentation"><a href="#缩进-Indentation" class="headerlink" title="缩进(Indentation)"></a>缩进(Indentation)</h2><p>代码没有缩进基本上就不能读了。唯一糟糕的事情就是不一致的缩进，因为它看上去像是遵循了规范，但是可能一路上伴随着混乱和惊奇。重要的是规范地使用缩进。</p>
+<p>一些开发人员更喜欢用tab制表符缩进，因为任何人都可以调整他们的编辑器以自己喜欢的空格数来显示Tab。有些人喜欢空格——通常四个，这都无所谓，只要团队每个人都遵循同一个规范就好了。这本书，例如，使用四个空格缩进，这也是JSLint中默认的缩进。</p>
+<p>什么应该缩进呢？规则很简单——花括号里面的东西。这就意味着函数体，循环 (do, while, for, for-in)，if，switch，以及对象字面量中的对象属性。下面的代码就是使用缩进的示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> c = <span class="number">1</span>,</div><div class="line">        d = <span class="number">2</span>,</div><div class="line">        inner;</div><div class="line">    <span class="keyword">if</span> (a &gt; b) &#123;</div><div class="line">        inner = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> &#123;</div><div class="line">                <span class="attr">r</span>: c - d</div><div class="line">            &#125;;</div><div class="line">        &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        inner = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> &#123;</div><div class="line">                <span class="attr">r</span>: c + d</div><div class="line">            &#125;;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> inner;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="花括号-Curly-Braces"><a href="#花括号-Curly-Braces" class="headerlink" title="花括号{}(Curly Braces)"></a>花括号{}(Curly Braces)</h2><p>花括号（亦称大括号，下同）应总被使用，即使在它们为可选的时候。技术上将，在in或是for中如果语句仅一条，花括号是不需要的，但是你还是应该总是使用它们，这会让代码更有持续性和易于更新。</p>
+<p>想象下你有一个只有一条语句的for循环，你可以忽略花括号，而没有解析的错误。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 糟糕的实例</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">1</span>)</div><div class="line">   alert(i);<span class="xml"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>但是，如果，后来，主体循环部分又增加了行代码？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 糟糕的实例</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">1</span>)</div><div class="line">   alert(i);</div><div class="line">   alert(i + <span class="string">" is "</span> + (i % <span class="number">2</span> ? <span class="string">"odd"</span> : <span class="string">"even"</span>));</div></pre></td></tr></table></figure></p>
+<p>第二个alert已经在循环之外，缩进可能欺骗了你。为了长远打算，最好总是使用花括号，即时值一行代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 好的实例</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">1</span>) &#123;</div><div class="line">   alert(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>if条件类似：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 坏</span></div><div class="line"><span class="keyword">if</span> (<span class="literal">true</span>)</div><div class="line">   alert(<span class="number">1</span>);</div><div class="line"><span class="keyword">else</span></div><div class="line">   alert(<span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="comment">// 好</span></div><div class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</div><div class="line">   alert(<span class="number">1</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">   alert(<span class="number">2</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="左花括号的位置-Opening-Brace-Location"><a href="#左花括号的位置-Opening-Brace-Location" class="headerlink" title="左花括号的位置(Opening Brace Location)"></a>左花括号的位置(Opening Brace Location)</h2><p>开发人员对于左大括号的位置有着不同的偏好——在同一行或是下一行。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</div><div class="line">   alert(<span class="string">"It's TRUE!"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//或</span></div><div class="line"><span class="keyword">if</span> (<span class="literal">true</span>)</div><div class="line">&#123;</div><div class="line">   alert(<span class="string">"It's TRUE!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个实例中，仁者见仁智者见智，但也有个案，括号位置不同会有不同的行为表现。这是因为分号插入机制(semicolon insertion mechanism)——JavaScript是不挑剔的，当你选择不使用分号结束一行代码时JavaScript会自己帮你补上。这种行为可能会导致麻 烦，如当你返回对象字面量，而左括号却在下一行的时候：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 警告： 意外的返回值</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span></div><div class="line">  <span class="comment">// 下面代码不执行   &#123;</span></div><div class="line">      name : <span class="string">"Batman"</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果你希望函数返回一个含有name属性的对象，你会惊讶。由于隐含分号，函数返回undefined。前面的代码等价于：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 警告： 意外的返回值</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="literal">undefined</span>;</div><div class="line">  <span class="comment">// 下面代码不执行   &#123;</span></div><div class="line">      name : <span class="string">"Batman"</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>总之，总是使用花括号，并始终把在与之前的语句放在同一行：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">name</span> : <span class="string">"Batman"</span></div><div class="line">   &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>关于分号注：就像使用花括号，你应该总是使用分号，即使他们可由JavaScript解析器隐式创建。这不仅促进更科学和更严格的代码，而且有助于解决存有疑惑的地方，就如前面的例子显示。</p>
+</blockquote>
+<h2 id="空格-White-Space"><a href="#空格-White-Space" class="headerlink" title="空格(White Space)"></a>空格(White Space)</h2><p>空格的使用同样有助于改善代码的可读性和一致性。在写英文句子的时候，在逗号和句号后面会使用间隔。在JavaScript中，你可以按照同样的逻辑在列表模样表达式（相当于逗号）和结束语句（相对于完成了“想法”）后面添加间隔。</p>
+<p>适合使用空格的地方包括：</p>
+<ul>
+<li>for循环分号分开后的的部分：如<code>for (var i = 0; i &lt; 10; i += 1) {...}</code></li>
+<li>for循环中初始化的多变量(i和max)：<code>for (var i = 0, max = 10; i &lt; max; i += 1) {...}</code></li>
+<li>分隔数组项的逗号的后面：<code>var a = [1, 2, 3];</code></li>
+<li>对象属性逗号的后面以及分隔属性名和属性值的冒号的后面：<code>var o = {a: 1, b: 2};</code></li>
+<li>限定函数参数：<code>myFunc(a, b, c)</code></li>
+<li>函数声明的花括号的前面：<code>function myFunc() {}</code></li>
+<li>匿名函数表达式function的后面：<code>var myFunc = function () {};</code></li>
+</ul>
+<p>使用空格分开所有的操作符和操作对象是另一个不错的使用，这意味着在<code>+, -, *, =, &lt;, &gt;, &lt;=, &gt;=, ===, !==, &amp;&amp;, ||, +=</code>等前后都需要空格。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 宽松一致的间距</span></div><div class="line"><span class="comment">// 使代码更易读</span></div><div class="line"><span class="comment">// 使得更加“透气”</span></div><div class="line"><span class="keyword">var</span> d = <span class="number">0</span>,</div><div class="line">    a = b + <span class="number">1</span>;</div><div class="line"><span class="keyword">if</span> (a &amp;&amp; b &amp;&amp; c) &#123;</div><div class="line">    d = a % c;</div><div class="line">    a += d;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 反面例子</span></div><div class="line"><span class="comment">// 缺失或间距不一</span></div><div class="line"><span class="comment">// 使代码变得疑惑</span></div><div class="line"><span class="keyword">var</span> d = <span class="number">0</span>,</div><div class="line">    a = b + <span class="number">1</span>;</div><div class="line"><span class="keyword">if</span> (a&amp;&amp;b&amp;&amp;c) &#123;</div><div class="line">    d=a % c;</div><div class="line">    a+= d;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最后需要注意的一个空格——花括号间距。最好使用空格：</p>
+<ul>
+<li>函数、if-else语句、循环、对象字面量的左花括号的前面({)</li>
+<li>else或while之间的右花括号(})</li>
+</ul>
+<p>空格使用的一点不足就是增加了文件的大小，但是压缩无此问题。</p>
+<blockquote>
+<p>有一个经常被忽略的代码可读性方面是垂直空格的使用。你可以使用空行来分隔代码单元，就像是文学作品中使用段落分隔一样。</p>
+</blockquote>
+<h2 id="命名规范-Naming-Conventions"><a href="#命名规范-Naming-Conventions" class="headerlink" title="命名规范(Naming Conventions)"></a>命名规范(Naming Conventions)</h2><p>另一种方法让你的代码更具可预测性和可维护性是采用命名规范。这就意味着你需要用同一种形式给你的变量和函数命名。</p>
+<p>下面是建议的一些命名规范，你可以原样采用，也可以根据自己的喜好作调整。同样，遵循规范要比规范是什么更重要。</p>
+<h3 id="以大写字母写构造函数-Capitalizing-Constructors"><a href="#以大写字母写构造函数-Capitalizing-Constructors" class="headerlink" title="以大写字母写构造函数(Capitalizing Constructors)"></a>以大写字母写构造函数(Capitalizing Constructors)</h3><p>JavaScript并没有类，但有new调用的构造函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> adam = <span class="keyword">new</span> Person();</div></pre></td></tr></table></figure></p>
+<p>因为构造函数仍仅仅是函数，仅看函数名就可以帮助告诉你这应该是一个构造函数还是一个正常的函数。</p>
+<p>命名构造函数时首字母大写具有暗示作用，使用小写命名的函数和方法不应该使用new调用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyConstructor</span>(<span class="params"></span>) </span>&#123;...&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>) </span>&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="分隔单词-Separating-Words"><a href="#分隔单词-Separating-Words" class="headerlink" title="分隔单词(Separating Words)"></a>分隔单词(Separating Words)</h3><p>当你的变量或是函数名有多个单词的时候，最好单词的分离遵循统一的规范，有一个常见的做法被称作“驼峰(Camel)命名法”，就是单词小写，每个单词的首字母大写。</p>
+<p>对于构造函数，可以使用大驼峰式命名法(upper camel case)，如<code>MyConstructor()</code>。对于函数和方法名称，你可以使用小驼峰式命名法(lower camel case)，像是<code>myFunction(),calculateArea()</code>和<code>getFirstName()</code>。</p>
+<p>要是变量不是函数呢？开发者通常使用小驼峰式命名法，但还有另外一种做法就是所有单词小写以下划线连接：例如，<code>first_name, favorite_bands,</code>和<code>old_company_name</code>，这种标记法帮你直观地区分函数和其他标识——原型和对象。</p>
+<p>ECMAScript的属性和方法均使用Camel标记法，尽管多字的属性名称是罕见的（正则表达式对象的lastIndex和ignoreCase属性）。</p>
+<h3 id="其它命名形式-Other-Naming-Patterns"><a href="#其它命名形式-Other-Naming-Patterns" class="headerlink" title="其它命名形式(Other Naming Patterns)"></a>其它命名形式(Other Naming Patterns)</h3><p>有时，开发人员使用命名规范来弥补或替代语言特性。</p>
+<p>例如，JavaScript中没有定义常量的方法（尽管有些内置的像Number, MAX_VALUE），所以开发者都采用全部单词大写的规范来命名这个程序生命周期中都不会改变的变量，如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 珍贵常数，只可远观</span></div><div class="line"><span class="keyword">var</span> PI = <span class="number">3.14</span>,</div><div class="line">    MAX_WIDTH = <span class="number">800</span>;</div></pre></td></tr></table></figure></p>
+<p>还有另外一个完全大写的惯例：全局变量名字全部大写。全部大写命名全局变量可以加强减小全局变量数量的实践，同时让它们易于区分。</p>
+<p>另外一种使用规范来模拟功能的是私有成员。虽然可以在JavaScript中实现真正的私有，但是开发者发现仅仅使用一个下划线前缀来表示一个私有属性或方法会更容易些。考虑下面的例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">    <span class="attr">getName</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._getFirst() + <span class="string">' '</span> + <span class="keyword">this</span>._getLast();</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">_getFirst</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// ...    </span></div><div class="line">	&#125;,</div><div class="line">    <span class="attr">_getLast</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// ...    </span></div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>在此例中，<code>getName()</code>就表示公共方法，部分稳定的API。而<code>_getFirst()</code>和<code>_getLast()</code>则表明了私有。它们仍然是正常的公共方法，但是使用下划线前缀来警告person对象的使用者这些方法在下一个版本中时不能保证工作的，是不能直接使用的。注意，JSLint有些不鸟下划线前缀，除非你设置了noman选项为:false。</p>
+<p>下面是一些常见的_private规范：</p>
+<ul>
+<li>使用尾下划线表示私有，如name_和getElements_()</li>
+<li>使用一个下划线前缀表_protected（保护）属性，两个下划线前缀表示__private （私有）属性</li>
+<li>Firefox中一些内置的变量属性不属于该语言的技术部分，使用两个前下划线和两个后下划线表示，如：__proto__和__parent__。</li>
+</ul>
+<h2 id="注释-Writing-Comments"><a href="#注释-Writing-Comments" class="headerlink" title="注释(Writing Comments)"></a>注释(Writing Comments)</h2><p>你必须注释你的代码，即使不会有其他人向你一样接触它。通常，当你深入研究一个问题，你会很清楚的知道这个代码是干嘛用的，但是，当你一周之后再回来看的时候，想必也要耗掉不少脑细胞去搞明白到底怎么工作的。</p>
+<p>很显然，注释不能走极端：每个单独变量或是单独一行。但是，你通常应该记录所有的函数，它们的参数和返回值，或是任何不寻常的技术和方法。要想到注 释可以给你代码未来的阅读者以诸多提示；阅读者需要的是（不要读太多的东西）仅注释和函数属性名来理解你的代码。例如，当你有五六行程序执行特定的任务， 如果你提供了一行代码目的以及为什么在这里的描述的话，阅读者就可以直接跳过这段细节。没有硬性规定注释代码比，代码的某些部分（如正则表达式）可能注释 要比代码多。</p>
+<blockquote>
+<p>最重要的习惯，然而也是最难遵守的，就是保持注释的及时更新，因为过时的注释比没有注释更加的误导人。</p>
+</blockquote>
+<h2 id="关于作者（About-the-Author-）"><a href="#关于作者（About-the-Author-）" class="headerlink" title="关于作者（About the Author ）"></a>关于作者（About the Author ）</h2><p>Stoyan Stefanov是Yahoo!web开发人员，多个O’Reilly书籍的作者、投稿者和技术评审。他经常在会议和他的博客<a href="http://www.zhangxinxu.com/wordpress/2010/10/%e7%bf%bb%e8%af%91-%e9%ab%98%e8%b4%a8%e9%87%8fjavascript%e4%bb%a3%e7%a0%81%e4%b9%a6%e5%86%99%e5%9f%ba%e6%9c%ac%e8%a6%81%e7%82%b9/www.phpied.com" target="_blank" rel="external">www.phpied.com</a>上发表web开发主题的演讲。Stoyan还是smush.it图片优化工具的创造者，YUI贡献者，雅虎性能优化工具YSlow 2.0的架构设计师。</p>
+<p>本文转自：<a href="http://www.zhangxinxu.com/wordpress/?p=1173" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/?p=1173</a></p>
+<p>英文原文：<a href="http://net.tutsplus.com/tutorials/javascript-ajax/the-essentials-of-writing-high-quality-javascript/" target="_blank" rel="external">http://net.tutsplus.com/tutorials/javascript-ajax/the-essentials-of-writing-high-quality-javascript/</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/10/03/Framework/AngularJS/directive/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Directive的基本使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/06/Framework/Node/node的安装和npm的简单介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">node的安装和npm的简单介绍</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
+  
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 PhoenixAve
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true,
+		showTags: false
+	}
+</script>
+
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,d.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function f(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function c(t,n,e,r,o){var i=u(t),c=f(t)-n;if(c-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,h.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||c)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");c(t,document.body.scrollTop,-63,2,0),c(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}function l(){x.default.versions.mobile&&window.screen.width<800&&(i(),s())}var p=e(71),d=r(p),v=e(72),y=(r(v),e(84)),h=r(y),b=e(69),x=r(b),m=e(75),g=r(m),w=e(70);l(),(0,w.addLoadEvent)(function(){g.default.init()}),t.exports={}},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n,e){var r=e(49),o=e(15);t.exports=function(t){return r(o(t))}},function(t,n,e){t.exports=!e(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,e){var r=e(6),o=e(12);t.exports=e(4)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(10),o=e(30),i=e(24),u=Object.defineProperty;n.f=e(4)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(22)("wks"),o=e(13),i=e(1).Symbol,u="function"==typeof i,f=t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))};f.store=r},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(35),o=e(16);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(6).f,o=e(2),i=e(7)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(22)("keys"),o=e(13);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(1),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n,e){var r=e(11);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n,e){var r=e(1),o=e(14),i=e(18),u=e(26),f=e(6).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||f(n,t,{value:u.f(t)})}},function(t,n,e){n.f=e(7)},function(t,n,e){var r=e(1),o=e(14),i=e(46),u=e(5),f="prototype",c=function(t,n,e){var a,s,l,p=t&c.F,d=t&c.G,v=t&c.S,y=t&c.P,h=t&c.B,b=t&c.W,x=d?o:o[n]||(o[n]={}),m=x[f],g=d?r:v?r[n]:(r[n]||{})[f];d&&(e=n);for(a in e)s=!p&&g&&void 0!==g[a],s&&a in x||(l=s?g[a]:e[a],x[a]=d&&"function"!=typeof g[a]?e[a]:h&&s?i(l,r):b&&g[a]==l?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n[f]=t[f],n}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((x.virtual||(x.virtual={}))[a]=l,t&c.R&&m&&!m[a]&&u(m,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(11),o=e(1).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){t.exports=!e(4)&&!e(8)(function(){return 7!=Object.defineProperty(e(29)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){"use strict";var r=e(18),o=e(27),i=e(36),u=e(5),f=e(2),c=e(17),a=e(51),s=e(20),l=e(58),p=e(7)("iterator"),d=!([].keys&&"next"in[].keys()),v="@@iterator",y="keys",h="values",b=function(){return this};t.exports=function(t,n,e,x,m,g,w){a(e,n,x);var O,S,_,j=function(t){if(!d&&t in A)return A[t];switch(t){case y:return function(){return new e(this,t)};case h:return function(){return new e(this,t)}}return function(){return new e(this,t)}},P=n+" Iterator",E=m==h,M=!1,A=t.prototype,T=A[p]||A[v]||m&&A[m],L=T||j(m),N=m?E?j("entries"):L:void 0,C="Array"==n?A.entries||T:T;if(C&&(_=l(C.call(new t)),_!==Object.prototype&&(s(_,P,!0),r||f(_,p)||u(_,p,b))),E&&T&&T.name!==h&&(M=!0,L=function(){return T.call(this)}),r&&!w||!d&&!M&&A[p]||u(A,p,L),c[n]=L,c[P]=b,m)if(O={values:E?L:j(h),keys:g?L:j(y),entries:N},w)for(S in O)S in A||i(A,S,O[S]);else o(o.P+o.F*(d||M),n,O);return O}},function(t,n,e){var r=e(10),o=e(55),i=e(16),u=e(21)("IE_PROTO"),f=function(){},c="prototype",a=function(){var t,n=e(29)("iframe"),r=i.length,o="<",u=">";for(n.style.display="none",e(48).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write(o+"script"+u+"document.F=Object"+o+"/script"+u),t.close(),a=t.F;r--;)delete a[c][i[r]];return a()};t.exports=Object.create||function(t,n){var e;return null!==t?(f[c]=r(t),e=new f,f[c]=null,e[u]=t):e=a(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(35),o=e(16).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,e){var r=e(2),o=e(3),i=e(45)(!1),u=e(21)("IE_PROTO");t.exports=function(t,n){var e,f=o(t),c=0,a=[];for(e in f)e!=u&&r(f,e)&&a.push(e);for(;n.length>c;)r(f,e=n[c++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){t.exports=e(5)},function(t,n,e){var r=e(15);t.exports=function(t){return Object(r(t))}},function(t,n,e){t.exports={default:e(41),__esModule:!0}},function(t,n,e){t.exports={default:e(42),__esModule:!0}},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(39),i=r(o),u=e(38),f=r(u),c="function"==typeof f.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":typeof t};n.default="function"==typeof f.default&&"symbol"===c(i.default)?function(t){return"undefined"==typeof t?"undefined":c(t)}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":"undefined"==typeof t?"undefined":c(t)}},function(t,n,e){e(65),e(63),e(66),e(67),t.exports=e(14).Symbol},function(t,n,e){e(64),e(68),t.exports=e(26).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,e){var r=e(3),o=e(61),i=e(60);t.exports=function(t){return function(n,e,u){var f,c=r(n),a=o(c.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if(f=c[s++],f!=f)return!0}else for(;a>s;s++)if((t||s in c)&&c[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(43);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n,e){var r=e(9),o=e(34),i=e(19);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,f=e(t),c=i.f,a=0;f.length>a;)c.call(t,u=f[a++])&&n.push(u);return n}},function(t,n,e){t.exports=e(1).document&&document.documentElement},function(t,n,e){var r=e(28);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n,e){var r=e(28);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){"use strict";var r=e(32),o=e(12),i=e(20),u={};e(5)(u,e(7)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){var r=e(9),o=e(3);t.exports=function(t,n){for(var e,i=o(t),u=r(i),f=u.length,c=0;f>c;)if(i[e=u[c++]]===n)return e}},function(t,n,e){var r=e(13)("meta"),o=e(11),i=e(2),u=e(6).f,f=0,c=Object.isExtensible||function(){return!0},a=!e(8)(function(){return c(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++f,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!c(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&v.NEED&&c(t)&&!i(t,r)&&s(t),t},v=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(6),o=e(10),i=e(9);t.exports=e(4)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),f=u.length,c=0;f>c;)r.f(t,e=u[c++],n[e]);return t}},function(t,n,e){var r=e(19),o=e(12),i=e(3),u=e(24),f=e(2),c=e(30),a=Object.getOwnPropertyDescriptor;n.f=e(4)?a:function(t,n){if(t=i(t),n=u(n,!0),c)try{return a(t,n)}catch(t){}if(f(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n,e){var r=e(3),o=e(33).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],f=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?f(t):o(r(t))}},function(t,n,e){var r=e(2),o=e(37),i=e(21)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(23),o=e(15);t.exports=function(t){return function(n,e){var i,u,f=String(o(n)),c=r(e),a=f.length;return c<0||c>=a?t?"":void 0:(i=f.charCodeAt(c),i<55296||i>56319||c+1===a||(u=f.charCodeAt(c+1))<56320||u>57343?t?f.charAt(c):i:t?f.slice(c,c+2):(i-55296<<10)+(u-56320)+65536)}}},function(t,n,e){var r=e(23),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(23),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){"use strict";var r=e(44),o=e(52),i=e(17),u=e(3);t.exports=e(31)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){},function(t,n,e){"use strict";var r=e(59)(!0);e(31)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){"use strict";var r=e(1),o=e(2),i=e(4),u=e(27),f=e(36),c=e(54).KEY,a=e(8),s=e(22),l=e(20),p=e(13),d=e(7),v=e(26),y=e(25),h=e(53),b=e(47),x=e(50),m=e(10),g=e(3),w=e(24),O=e(12),S=e(32),_=e(57),j=e(56),P=e(6),E=e(9),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k="prototype",F=d("_hidden"),q=d("toPrimitive"),I={}.propertyIsEnumerable,B=s("symbol-registry"),D=s("symbols"),W=s("op-symbols"),H=Object[k],K="function"==typeof L,R=r.QObject,J=!R||!R[k]||!R[k].findChild,U=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(H,n);r&&delete H[n],A(t,n,e),r&&t!==H&&A(H,n,r)}:A,G=function(t){var n=D[t]=S(L[k]);return n._k=t,n},$=K&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},z=function(t,n,e){return t===H&&z(W,n,e),m(t),n=w(n,!0),m(e),o(D,n)?(e.enumerable?(o(t,F)&&t[F][n]&&(t[F][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,F)||A(t,F,O(1,{})),t[F][n]=!0),U(t,n,e)):A(t,n,e)},Y=function(t,n){m(t);for(var e,r=b(n=g(n)),o=0,i=r.length;i>o;)z(t,e=r[o++],n[e]);return t},Q=function(t,n){return void 0===n?S(t):Y(S(t),n)},X=function(t){var n=I.call(this,t=w(t,!0));return!(this===H&&o(D,t)&&!o(W,t))&&(!(n||!o(this,t)||!o(D,t)||o(this,F)&&this[F][t])||n)},V=function(t,n){if(t=g(t),n=w(n,!0),t!==H||!o(D,n)||o(W,n)){var e=M(t,n);return!e||!o(D,n)||o(t,F)&&t[F][n]||(e.enumerable=!0),e}},Z=function(t){for(var n,e=T(g(t)),r=[],i=0;e.length>i;)o(D,n=e[i++])||n==F||n==c||r.push(n);return r},tt=function(t){for(var n,e=t===H,r=T(e?W:g(t)),i=[],u=0;r.length>u;)!o(D,n=r[u++])||e&&!o(H,n)||i.push(D[n]);return i};K||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===H&&n.call(W,e),o(this,F)&&o(this[F],t)&&(this[F][t]=!1),U(this,t,O(1,e))};return i&&J&&U(H,t,{configurable:!0,set:n}),G(t)},f(L[k],"toString",function(){return this._k}),j.f=V,P.f=z,e(33).f=_.f=Z,e(19).f=X,e(34).f=tt,i&&!e(18)&&f(H,"propertyIsEnumerable",X,!0),v.f=function(t){return G(d(t))}),u(u.G+u.W+u.F*!K,{Symbol:L});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),et=0;nt.length>et;)d(nt[et++]);for(var nt=E(d.store),et=0;nt.length>et;)y(nt[et++]);u(u.S+u.F*!K,"Symbol",{for:function(t){return o(B,t+="")?B[t]:B[t]=L(t)},keyFor:function(t){if($(t))return h(B,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){J=!0},useSimple:function(){J=!1}}),u(u.S+u.F*!K,"Object",{create:Q,defineProperty:z,defineProperties:Y,getOwnPropertyDescriptor:V,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),N&&u(u.S+u.F*(!K||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!$(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!$(n))return n}),r[1]=n,C.apply(N,r)}}}),L[k][q]||e(5)(L[k],q,L[k].valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){e(25)("asyncIterator")},function(t,n,e){e(25)("observable")},function(t,n,e){e(62);for(var r=e(1),o=e(5),i=e(17),u=e(7)("toStringTag"),f=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],c=0;c<5;c++){var a=f[c],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var o=e(40),i=r(o),u=function(){function t(t,n,e){return n||e?String.fromCharCode(n||e):o[t]||t}function n(t){return l[t]}var e=/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,r=/['<> "&]/g,o={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},f=/\u00a0/g,c=/<br\s*\/?>/gi,a=/\r?\n/g,s=/\s/g,l={};for(var p in o)l[o[p]]=p;return o["&apos;"]="'",l["'"]="&#39;",{encode:function(t){return t?(""+t).replace(r,n).replace(a,"<br/>").replace(s,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(c,"\n").replace(e,t).replace(f," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=u.encodeObject(t[n]);else if("object"==("undefined"==typeof t?"undefined":(0,i.default)(t)))for(var r in t)t[r]=u.encodeObject(t[r]);else if("string"==typeof t)return u.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=u},function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},,,function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev">&laquo; Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next &raquo;</a>'),yiliaConfig&&yiliaConfig.open_in_new){var n=document.querySelectorAll(".article-entry a:not(.article-more-a)");n.forEach(function(t){t.setAttribute("target","_blank")})}var e=document.querySelector("#js-aboutme");e&&0!==e.length&&(e.innerHTML=e.innerText)}t.exports={init:e}},,,,,,,,,function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e}])</script><script src="/./main.2d7529.js"></script><script>!function(){var e=function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)};e("/slider.885efe.js")}()</script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">windows,windows 10</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mongodb,数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">express,node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">gulp，</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">nodejs,node,javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Webpack,Gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack,打包工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://www.ruanyifeng.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阮一峰</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.zhangxinxu.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>张鑫旭</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.liaoxuefeng.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>廖雪峰</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.cnblogs.com/TomXu/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>汤姆大叔</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.haorooms.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Aaron</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://segmentfault.com/a/1190000007062464" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>前端资源</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.nowcoder.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>牛客网</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://laod.cn/hosts/2016-google-hosts.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>老D翻墙</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://lanterncn.cn/down" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>蓝灯工作站</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

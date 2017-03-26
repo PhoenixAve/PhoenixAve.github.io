@@ -18,7 +18,7 @@
     <link rel="alternative" href="/atom.xml" title="PhoenixAve" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.2d7529.css">
   <style type="text/css">
@@ -42,7 +42,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/head.jpg" class="js-avatar">
+			<img src="/img/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">PhoenixAve</a></h1>
@@ -100,7 +100,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/head.jpg" class="js-avatar">
+				<img src="/img/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">PhoenixAve</h1>
@@ -151,6 +151,209 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Framework/Gulp/gulp搭建静态项目结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/10/Framework/Gulp/gulp搭建静态项目结构/">gulp搭建静态项目结构</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/10/Framework/Gulp/gulp搭建静态项目结构/" class="archive-article-date">
+  	<time datetime="2017-01-10T13:03:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基本文件结构"><a href="#基本文件结构" class="headerlink" title="基本文件结构"></a>基本文件结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">├─dist</div><div class="line">├─node_modules</div><div class="line">└─src</div><div class="line">    ├─app</div><div class="line">    │  ├─login</div><div class="line">    │  └─register</div><div class="line">    ├─fonts</div><div class="line">    ├─img</div><div class="line">    └─less</div></pre></td></tr></table></figure>
+<h2 id="安装相关的依赖包"><a href="#安装相关的依赖包" class="headerlink" title="安装相关的依赖包"></a>安装相关的依赖包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install --save angular</div><div class="line">npm install --save angular-route gulp del  gulp-concat gulp-uglify gulp-yargs gulp-if gulp-less gulp-cssnano gulp-angular-templatecache browser-sync</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/01/10/Framework/Gulp/gulp搭建静态项目结构/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">gulp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/10/Framework/Gulp/gulp搭建静态项目结构/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Framework/Vue/Vue开发遇到的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/18/Framework/Vue/Vue开发遇到的问题/">Vue开发遇到的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2016/11/18/Framework/Vue/Vue开发遇到的问题/" class="archive-article-date">
+  	<time datetime="2016-11-18T13:30:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要是记录学习及开发中遇到的一些问题，仅供自己学习所用，因此没有详细记录</p>
+<h2 id="router-link不能够添加绑定事件"><a href="#router-link不能够添加绑定事件" class="headerlink" title="router-link不能够添加绑定事件"></a>router-link不能够添加绑定事件</h2><p>如果想要在添加点击事件，需要在router-link标签的内部或者外部标签上添加，不能直接在router-link上添加，没有效果<br>详情请看 <a href="https://segmentfault.com/q/1010000007891457">https://segmentfault.com/q/1010000007891457</a></p>
+        
+          <a class="article-more-a" href="/2016/11/18/Framework/Vue/Vue开发遇到的问题/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/11/18/Framework/Vue/Vue开发遇到的问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Others/免费更新win10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/12/Others/免费更新win10/">windows 免费升级win10</a>
+    </h1>
+  
+
+        
+        <a href="/2016/11/12/Others/免费更新win10/" class="archive-article-date">
+  	<time datetime="2016-11-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="windows-免费升级win10"><a href="#windows-免费升级win10" class="headerlink" title="windows 免费升级win10"></a>windows 免费升级win10</h2><ol>
+<li><p>下载win10安装软件</p>
+<p> 正常来说去年win10已经停止了免费更新，氮素！还是留了个后门的，就是— <a href="https://www.microsoft.com/zh-cn/accessibility/windows10upgrade" target="_blank" rel="external">面向使用辅助技术的客户的 Windows 10 免费升级优惠</a> （反正就是给不是正常人使用的，但是跟正常系统是一样的）；</p>
+</li>
+<li>点击【立即升级】按钮即可，官方版本不用担心有乱七八糟的东西；</li>
+<li>然而有些电脑是需要激活才能升win10的，我是试过好多的激活码都不管用，当然网上还有一些其他激活的教程，我是选择了最简单的，下软件,用的是 <strong>oem7小马激活工具</strong>  一键傻瓜式操作；</li>
+<li>后面就简单了，用前面下的win10工具下载呗，建议网速好的情况，最好是晚上下，差不多3g？下载完成后，也会自动安装的；</li>
+<li>如果电脑内存不大，略卡的情况可以度娘一下，进行各种优化；实在卡的不行，也可以选择恢复的，在安装时已经帮你自动保存了以前的版本；<blockquote>
+<p>PS：如果电脑原来是32bit的，升级了也还是32bit，想升64bit好像只能重装？反正直接升win10是不行的；</p>
+</blockquote>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">windows,windows 10</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/11/12/Others/免费更新win10/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Framework/AngularJS/directive" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -200,6 +403,71 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/10/03/Framework/AngularJS/directive/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/深入理解javascript之编写高质量javascript代码的基本要点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/">深入理解javascript之编写高质量javascript代码的基本要点</a>
+    </h1>
+  
+
+        
+        <a href="/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/" class="archive-article-date">
+  	<time datetime="2016-10-01T13:50:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>才华横溢的<a href="http://www.phpied.com/">Stoyan Stefanov</a>，在他写的由<a href="http://oreilly.com/">O’Reilly</a>初版的新书<a href="http://amzn.to/93szK7">《JavaScript Patterns》</a>(JavaScript模式)中，我想要是为我们的读者贡献其摘要，那会是件很美妙的事情。具体一点就是编写高质量JavaScript的一些要素，例如避免全局变量，使用单变量声明，在循环中预缓存length(长度)，遵循代码阅读，以及更多。</p>
+<p>此摘要也包括一些与代码不太相关的习惯，但对整体代码的创建息息相关，包括撰写API文档、执行同行评审以及运行JSLint。这些习惯和最佳做法可以帮助你写出更好的，更易于理解和维护的代码，这些代码在几个月或是几年之后再回过头看看也是会觉得很自豪的。</p>
+        
+          <a class="article-more-a" href="/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/">展开全文 >></a>
         </p>
       
 
@@ -660,11 +928,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mongodb,数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">windows,windows 10</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mongodb,数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,7 +952,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">新建,模板,小书匠</a>
+                <a href="javascript:void(0)" class="js-tag color1">gulp，</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,23 +960,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Webpack,Gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack,打包工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">windows,windows 10</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">gulp，</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
               </li>
             
             <div class="clearfix"></div>
@@ -752,27 +1028,39 @@
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="http://www.ruanyifeng.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阮一峰</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+              <a href="http://www.zhangxinxu.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>张鑫旭</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="http://www.liaoxuefeng.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>廖雪峰</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="http://www.cnblogs.com/TomXu/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>汤姆大叔</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="http://www.haorooms.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Aaron</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="https://segmentfault.com/a/1190000007062464" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>前端资源</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.nowcoder.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>牛客网</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://laod.cn/hosts/2016-google-hosts.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>老D翻墙</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://lanterncn.cn/down" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>蓝灯工作站</a>
             </li>
           
         </ul>

@@ -18,7 +18,7 @@
     <link rel="alternative" href="/atom.xml" title="PhoenixAve" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.2d7529.css">
   <style type="text/css">
@@ -42,7 +42,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/head.jpg" class="js-avatar">
+			<img src="/img/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">PhoenixAve</a></h1>
@@ -100,7 +100,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/head.jpg" class="js-avatar">
+				<img src="/img/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">PhoenixAve</h1>
@@ -150,6 +150,171 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Others/前端跨域访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/03/Others/前端跨域访问/">前端跨域访问</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/03/Others/前端跨域访问/" class="archive-article-date">
+  	<time datetime="2017-11-03T12:01:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://blog.brucefeng.info/post/web-crossdomain-2016" target="_blank" rel="external">http://blog.brucefeng.info/post/web-crossdomain-2016</a></p>
+<ul>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_0" target="_blank" rel="external">1. JSONP</a></li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_1" target="_blank" rel="external">2. CORS（Cross-origin resource sharing）</a><ul>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_2" target="_blank" rel="external">2.1 运行模式</a></li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_3" target="_blank" rel="external">2.2 JQuery支持CORS</a></li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_4" target="_blank" rel="external">2.3 与JSONP相比</a></li>
+</ul>
+</li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_5" target="_blank" rel="external">3. 跨域访问在点评的应用</a></li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_6" target="_blank" rel="external">References</a></li>
+</ul>
+<p>在互联网应用中：</p>
+<ul>
+<li>一个页面需要请求多个域名下的web服务端接口</li>
+<li>同时一个web服务接口可能会被很多不同域名下的页面请求。</li>
+</ul>
+<p>一个web应用如果支持为了支持以上模式而申请多个域名是不合算的，因为域名申请和管理所占用的资源比较大，因此服务端支持跨域就成了一个更合理的解决方案。</p>
+<p>解决跨域的方式主要有两种：</p>
+<h3 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1. JSONP"></a>1. JSONP</h3><p>关于<a href="https://zh.wikipedia.org/wiki/JSONP" target="_blank" rel="external">JSONP的基本概念</a>就不多介绍了，现在在<a href="https://www.google.com.hk/search?q=jsonp&amp;ei=6GS5VraXHsO60ATcp7vAAQ&amp;start=10&amp;sa=N&amp;biw=1280&amp;bih=678&amp;dpr=2" target="_blank" rel="external">网上已经有很多解释</a>。JSONP模式下前端Client可以跨域请求JSON文件，进而实现前端跨域请求其他服务器资源的目的。<br>目前在一些流行的JavaScript库中对JSONP和Ajax的支持方式在表现形式上非常相近，在代码中写法几乎都是相同的，但是JSONP与Ajax是完全不同的原理。JSONP是以请求文件数据的方式向服务器发出请求，而Ajax是使用XMLHttpRequest向服务器异步发出请求。</p>
+<ul>
+<li><p>优点<br>JSONP并不需要浏览器特殊支持，可以说所有的浏览器都是支持JSONP请求的。而且目前各流行JavaScript类库对JSONP的支持已经很全面，开发中也比较方便。</p>
+</li>
+<li><p>缺点<br>但JSONP的请求只能是GET请求，因为在请求URL有长度限制，一般情况下只要不超过2000字符都是可以的(<a href="http://www.boutell.com/newfaq/misc/urllength.html" target="_blank" rel="external">What is the maximum length of a URL?</a>)，主流浏览器所支持的长度也越来越放宽，基本是可以满足条件的。<br>JSONP的web服务端接口因为无法限制接收指定域名的请求，因此在实际应用中需要在安全性方面进行更多限制，以避免接口数据泄漏。</p>
+</li>
+</ul>
+<h3 id="2-CORS（Cross-origin-resource-sharing）"><a href="#2-CORS（Cross-origin-resource-sharing）" class="headerlink" title="2. CORS（Cross-origin resource sharing）"></a>2. CORS（Cross-origin resource sharing）</h3><p>主要是通过定义浏览器与服务器之间共享内容的方式来实现跨域。<br>CORS通过新增一系列 HTTP 头（Access-Control-Allow-Origin，Access-Control-Expose-Headers，Access-Control-Max-Age，Access-Control-Allow-Credentials，Access-Control-Allow-Methods，Access-Control-Allow-Headers等），让服务器能声明那些来源可以通过浏览器访问该服务器上的资源。另外，对那些会对服务器数据造成破坏性影响的 HTTP 请求方法（特别是 GET 以外的 HTTP 方法，或者搭配某些MIME类型的POST请求），标准强烈要求浏览器必须先以 OPTIONS 请求方式发送一个预请求(preflight request)，从而获知服务器端对跨源请求所支持 HTTP 方法。在确认服务器允许该跨源请求的情况下，以实际的 HTTP 请求方法发送那个真正的请求。服务器端也可以通知客户端，是不是需要随同请求一起发送信用信息（包括 Cookies 和 HTTP 认证相关数据）。</p>
+<h4 id="2-1-运行模式"><a href="#2-1-运行模式" class="headerlink" title="2.1 运行模式"></a>2.1 运行模式</h4><p><img src="/2017/11/03/Others/前端跨域访问/Cros原理.png" alt="Cros原理"></p>
+<p>如果只使用简单请求向服务器发出请求，则浏览器就不需要向服务器发送预请求，服务器端只需要在response中增加Access-Control-Allow-Origin就可以了，开发非常简单，在代码上和Ajax请求几乎没有区别。</p>
+<blockquote>
+<p>简单请求：只使用 GET, HEAD 或者 POST 请求方法。如果使用 POST 向服务器端传送数据，则数据类型(Content-Type)只能是 application/x-www-form-urlencoded, multipart/form-data 或 text/plain中的一种。不会使用自定义请求头（类似于 X-Modified 这种）。<br>但请求以如果 GET, HEAD 或者 POST 以外的方法发起请求。或者，使用 POST，但请求数据为 application/x-www-form-urlencoded, multipart/form-data 或者 text/plain 以外的数据类型。比如说，用 POST 发送数据类型为 application/xml 或者 text/xml 的 XML 数据的请求或者使用自定义请求头（比如添加诸如 X-PINGOTHER）时，浏览器就需要向服务器发送预请求，以确定服务器是否支持后续请求，如果支持，浏览器则继续发送后续Ajax请求。</p>
+</blockquote>
+<h4 id="2-2-JQuery支持CORS"><a href="#2-2-JQuery支持CORS" class="headerlink" title="2.2 JQuery支持CORS"></a>2.2 JQuery支持CORS</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    <span class="comment">//PUT 和DELETE  需要发送预请求</span></div><div class="line">    type: <span class="string">'HTTP METHOD'</span>,<span class="comment">//如GET  ，POST  </span></div><div class="line">    url: <span class="string">'cross-domain-url'</span>,</div><div class="line">    <span class="attr">contentType</span>:,</div><div class="line">    <span class="attr">xhrFields</span>: &#123;</div><div class="line">      <span class="attr">withCredentials</span>: <span class="literal">false</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">headers</span>: &#123;&#125;,</div><div class="line">    <span class="attr">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">    <span class="attr">error</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>详细的使用参见<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="external">HTTP访问控制(CORS)</a>。</p>
+<h4 id="2-3-与JSONP相比"><a href="#2-3-与JSONP相比" class="headerlink" title="2.3 与JSONP相比"></a>2.3 与JSONP相比</h4><p>CORS的开发更为简单，对安全性的控制更为灵活，且目前所有的<a href="http://caniuse.com/#feat=cors" target="_blank" rel="external">现代浏览器都已经支持了CORS</a>模式，CORS支持所有的HTTP Method类型，在Restful请求中可以实现跨域。</p>
+<h3 id="3-跨域访问在点评的应用"><a href="#3-跨域访问在点评的应用" class="headerlink" title="3. 跨域访问在点评的应用"></a>3. 跨域访问在点评的应用</h3><p>在点评，很多功能采用<a href="http://blog.brucefeng.info/post/static-backend-asolate" target="_blank" rel="external">动静分离</a>的方式，在项目部署上也采用前端静态文件资源与后端web服务独立域名的方式进行；这种模式下，后端的HTTP 接口对于前端而言是一个服务接口；例如一个查询用户是否登录的接口，可能会被多个项目使用，因此就要求服务端接口支持跨域请求。<br>目前在点评中主要使用JSONP的方式来实现跨域请求；因为CORS算是一个新技术，因此还没有大规模使用，只会在一些不重要的功能中使用过。</p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/JSONP" target="_blank" rel="external">JSONP</a><br><a href="http://www.boutell.com/newfaq/misc/urllength.html" target="_blank" rel="external">What is the maximum length of a URL?</a><br><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank" rel="external">CORS（Cross-origin resource sharing）</a><br><a href="https://www.w3.org/TR/cors/" target="_blank" rel="external">Cross-Origin Resource Sharing</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="external">HTTP访问控制(CORS)</a><br><a href="https://bugs.jquery.com/query?status=closed&amp;resolution=plugin" target="_blank" rel="external">JQuery CORS support IE’s XDomainRequest object plugin</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">跨域</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/03/Others/前端跨域访问/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Framework/Webpack/Gulp和Webpack对比" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/18/Framework/Webpack/Gulp和Webpack对比/">Gulp和Webpack对比</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/18/Framework/Webpack/Gulp和Webpack对比/" class="archive-article-date">
+  	<time datetime="2017-03-18T13:50:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文  <a href="http://chping.website/2016/10/18/gulp和webpack对比/">http://chping.website/2016/10/18/gulp和webpack对比/</a></p>
+<p>在现在的前端开发中，前后端分离、模块化开发、版本控制、文件合并与压缩、mock数据等等一些原本后端的思想开始逐渐渗透到“大前端”的开发中。前端开发过程越来越繁琐，当今越来越多的网站已经从网页模式进化到了 Webapp 模式。它们运行在现代的高级浏览器里，使用 HTML5、 CSS3、 ES6 等更新的技术来开发丰富的功能，网页已经不仅仅是完成浏览的基本需求，并且Webapp通常是一个单页面应用(SPA)，每一个视图通过异步的方式加载，这导致页面初始化和使用过程中会加载越来越多的 JavaScript 代码，这给前端开发的流程和资源组织带来了巨大的挑战。</p>
+        
+          <a class="article-more-a" href="/2017/03/18/Framework/Webpack/Gulp和Webpack对比/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Webpack,Gulp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/18/Framework/Webpack/Gulp和Webpack对比/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Others/CSS命名规范——BEM思想" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -410,71 +575,6 @@
 
 
   
-    <article id="post-Framework/Express/express的基本使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/06/Framework/Express/express的基本使用/">express的基本使用</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/06/Framework/Express/express的基本使用/" class="archive-article-date">
-  	<time datetime="2017-03-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先假定你已经安装了 <a href="https://nodejs.org/">Node.js</a>，接下来为你的应用创建一个目录，然后进入此目录并将其作为当前工作目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mkdir myapp</div><div class="line">$ cd myapp</div></pre></td></tr></table></figure></p>
-<p>通过 npm init 命令为你的应用创建一个 package.json 文件。 欲了解 package.json 是如何起作用的，请参考 <a href="https://docs.npmjs.com/files/package.json">Specifics of npm’s package.json handling</a>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm init</div></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2017/03/06/Framework/Express/express的基本使用/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">express,node</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/06/Framework/Express/express的基本使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
     <article id="post-Framework/Gulp/gulp插件的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -624,6 +724,71 @@
 
 
   
+    <article id="post-Framework/Express/express的基本使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/06/Framework/Express/express的基本使用/">express的基本使用</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/06/Framework/Express/express的基本使用/" class="archive-article-date">
+  	<time datetime="2017-03-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先假定你已经安装了 <a href="https://nodejs.org/">Node.js</a>，接下来为你的应用创建一个目录，然后进入此目录并将其作为当前工作目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mkdir myapp</div><div class="line">$ cd myapp</div></pre></td></tr></table></figure></p>
+<p>通过 npm init 命令为你的应用创建一个 package.json 文件。 欲了解 package.json 是如何起作用的，请参考 <a href="https://docs.npmjs.com/files/package.json">Specifics of npm’s package.json handling</a>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm init</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2017/03/06/Framework/Express/express的基本使用/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">express,node</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/06/Framework/Express/express的基本使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Framework/Gulp/Gulp构建工具的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -756,144 +921,6 @@
 
 
   
-    <article id="post-Framework/Gulp/gulp搭建静态项目结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/10/Framework/Gulp/gulp搭建静态项目结构/">gulp搭建静态项目结构</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/10/Framework/Gulp/gulp搭建静态项目结构/" class="archive-article-date">
-  	<time datetime="2017-01-10T13:03:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="基本文件结构"><a href="#基本文件结构" class="headerlink" title="基本文件结构"></a>基本文件结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">├─dist</div><div class="line">├─node_modules</div><div class="line">└─src</div><div class="line">    ├─app</div><div class="line">    │  ├─login</div><div class="line">    │  └─register</div><div class="line">    ├─fonts</div><div class="line">    ├─img</div><div class="line">    └─less</div></pre></td></tr></table></figure>
-<h2 id="安装相关的依赖包"><a href="#安装相关的依赖包" class="headerlink" title="安装相关的依赖包"></a>安装相关的依赖包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install --save angular</div><div class="line">npm install --save angular-route gulp del  gulp-concat gulp-uglify gulp-yargs gulp-if gulp-less gulp-cssnano gulp-angular-templatecache browser-sync</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/01/10/Framework/Gulp/gulp搭建静态项目结构/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">gulp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/10/Framework/Gulp/gulp搭建静态项目结构/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Others/免费更新win10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/12/Others/免费更新win10/">windows 免费升级win10</a>
-    </h1>
-  
-
-        
-        <a href="/2016/11/12/Others/免费更新win10/" class="archive-article-date">
-  	<time datetime="2016-11-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="windows-免费升级win10"><a href="#windows-免费升级win10" class="headerlink" title="windows 免费升级win10"></a>windows 免费升级win10</h2><ol>
-<li><p>下载win10安装软件</p>
-<p> 正常来说去年win10已经停止了免费更新，氮素！还是留了个后门的，就是— <a href="https://www.microsoft.com/zh-cn/accessibility/windows10upgrade" target="_blank" rel="external">面向使用辅助技术的客户的 Windows 10 免费升级优惠</a> （反正就是给不是正常人使用的，但是跟正常系统是一样的）；</p>
-</li>
-<li>点击【立即升级】按钮即可，官方版本不用担心有乱七八糟的东西；</li>
-<li>然而有些电脑是需要激活才能升win10的，我是试过好多的激活码都不管用，当然网上还有一些其他激活的教程，我是选择了最简单的，下软件,用的是 <strong>oem7小马激活工具</strong>  一键傻瓜式操作；</li>
-<li>后面就简单了，用前面下的win10工具下载呗，建议网速好的情况，最好是晚上下，差不多3g？下载完成后，也会自动安装的；</li>
-<li>如果电脑内存不大，略卡的情况可以度娘一下，进行各种优化；实在卡的不行，也可以选择恢复的，在安装时已经帮你自动保存了以前的版本；<blockquote>
-<p>PS：如果电脑原来是32bit的，升级了也还是32bit，想升64bit好像只能重装？反正直接升win10是不行的；</p>
-</blockquote>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">windows,windows 10</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/11/12/Others/免费更新win10/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -995,11 +1022,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mongodb,数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">windows,windows 10</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mongodb,数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1011,7 +1046,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">新建,模板,小书匠</a>
+                <a href="javascript:void(0)" class="js-tag color1">gulp，</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1019,23 +1054,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Webpack,Gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack,打包工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">windows,windows 10</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">gulp，</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1087,27 +1122,39 @@
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="http://www.ruanyifeng.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阮一峰</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+              <a href="http://www.zhangxinxu.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>张鑫旭</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="http://www.liaoxuefeng.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>廖雪峰</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="http://www.cnblogs.com/TomXu/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>汤姆大叔</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="http://www.haorooms.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Aaron</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="https://segmentfault.com/a/1190000007062464" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>前端资源</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.nowcoder.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>牛客网</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://laod.cn/hosts/2016-google-hosts.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>老D翻墙</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://lanterncn.cn/down" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>蓝灯工作站</a>
             </li>
           
         </ul>
