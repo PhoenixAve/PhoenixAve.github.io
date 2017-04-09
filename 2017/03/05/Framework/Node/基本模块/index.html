@@ -9,26 +9,20 @@
   <title>NodeJS基本模块 | PhoenixAve</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本文是根据廖雪峰的javascript教程精简而来，仅是为了方便自己学习
-fs文件系统模块Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。
-异步读文件按照JavaScript的标准，异步读取一个文本文件的代码如下：
-1234567891011&apos;use strict&apos;;var fs = require(&apos;fs">
+fs文件系统模块Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NodeJS基本模块">
 <meta property="og:url" content="http://yoursite.com/2017/03/05/Framework/Node/基本模块/index.html">
 <meta property="og:site_name" content="PhoenixAve">
 <meta property="og:description" content="本文是根据廖雪峰的javascript教程精简而来，仅是为了方便自己学习
-fs文件系统模块Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。
-异步读文件按照JavaScript的标准，异步读取一个文本文件的代码如下：
-1234567891011&apos;use strict&apos;;var fs = require(&apos;fs">
+fs文件系统模块Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。">
 <meta property="og:image" content="http://www.liaoxuefeng.com/files/attachments/0014507141527539080883467c246e184f45b360d125814000/l">
 <meta property="og:image" content="http://www.liaoxuefeng.com/files/attachments/00145071557176340f646d8f6534e9a8f5afb4144de2ac8000/l">
-<meta property="og:updated_time" content="2017-03-31T07:24:22.862Z">
+<meta property="og:updated_time" content="2017-04-09T01:41:42.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NodeJS基本模块">
 <meta name="twitter:description" content="本文是根据廖雪峰的javascript教程精简而来，仅是为了方便自己学习
-fs文件系统模块Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。
-异步读文件按照JavaScript的标准，异步读取一个文本文件的代码如下：
-1234567891011&apos;use strict&apos;;var fs = require(&apos;fs">
+fs文件系统模块Node.js内置的fs模块就是文件系统模块，负责读写文件。和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。">
 <meta name="twitter:image" content="http://www.liaoxuefeng.com/files/attachments/0014507141527539080883467c246e184f45b360d125814000/l">
   
     <link rel="alternative" href="/atom.xml" title="PhoenixAve" type="application/atom+xml">
@@ -191,6 +185,7 @@ fs文件系统模块Node.js内置的fs模块就是文件系统模块，负责读
       
         <p>本文是根据<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434501497361a4e77c055f5c4a8da2d5a1868df36ad1000" target="_blank" rel="external">廖雪峰的javascript教程</a>精简而来，仅是为了方便自己学习</p>
 <h2 id="fs文件系统模块"><a href="#fs文件系统模块" class="headerlink" title="fs文件系统模块"></a>fs文件系统模块</h2><p>Node.js内置的<code>fs</code>模块就是文件系统模块，负责读写文件。<br>和所有其它JavaScript模块不同的是，<code>fs</code>模块同时提供了异步和同步的方法。</p>
+<a id="more"></a>
 <h3 id="异步读文件"><a href="#异步读文件" class="headerlink" title="异步读文件"></a>异步读文件</h3><p>按照JavaScript的标准，异步读取一个文本文件的代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.readFile(<span class="string">'sample.txt'</span>, <span class="string">'utf-8'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="built_in">console</span>.log(err);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(data);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>请注意，<code>sample.txt</code>文件必须在当前目录下，且文件编码为<code>utf-8</code>。</p>
