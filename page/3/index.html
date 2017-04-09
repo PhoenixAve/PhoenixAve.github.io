@@ -155,6 +155,685 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Framework/Webpack/Webpack配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/03/Framework/Webpack/Webpack配置/">webpack配置</a>
+    </h1>
+  
+
+        
+        <a href="/2016/11/03/Framework/Webpack/Webpack配置/" class="archive-article-date">
+  	<time datetime="2016-11-03T12:01:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="全局安装webpack"><a href="#全局安装webpack" class="headerlink" title="全局安装webpack"></a>全局安装webpack</h2><h2 id="配置webpack-config-js文件"><a href="#配置webpack-config-js文件" class="headerlink" title="配置webpack.config.js文件"></a>配置webpack.config.js文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line"><span class="comment">//-----------------------配置程序入口文件-----------------------</span></div><div class="line">  entry: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./src/main.js'</span> <span class="comment">// 文件入口</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">//------------------------配置编译后的文件----------------------</span></div><div class="line">  output: &#123;</div><div class="line">    <span class="attr">path</span>: path.resolve(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].js'</span>,  <span class="comment">// 最终编译后的js文件</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">//-----------------------配置自动刷新相关内容-----------------------</span></div><div class="line">  devtooll: <span class="string">'eval'</span>,</div><div class="line">  <span class="attr">devServer</span>: &#123;</div><div class="line">    <span class="attr">contentBase</span>: __dirname + <span class="string">'/src'</span>,</div><div class="line">	<span class="attr">hot</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">inline</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">port</span>: <span class="number">8080</span>,</div><div class="line">	<span class="attr">host</span>: <span class="string">'localhost'</span>,</div><div class="line">	<span class="attr">historyApiFallback</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">noInfo</span>: <span class="literal">false</span>,</div><div class="line">	<span class="comment">// stats: 'minimal',</span></div><div class="line">	<span class="comment">// publicPath: publicPath</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">//---------------------------各种插件-----------------------------</span></div><div class="line">  plugins: &#123;</div><div class="line">  	<span class="comment">// 自动刷新插件</span></div><div class="line">  	<span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/11/03/Framework/Webpack/Webpack配置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Others/前端跨域访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/03/Others/前端跨域访问/">前端跨域访问</a>
+    </h1>
+  
+
+        
+        <a href="/2016/11/03/Others/前端跨域访问/" class="archive-article-date">
+  	<time datetime="2016-11-03T12:01:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://blog.brucefeng.info/post/web-crossdomain-2016">http://blog.brucefeng.info/post/web-crossdomain-2016</a></p>
+<ul>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_0">1. JSONP</a></li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_1">2. CORS（Cross-origin resource sharing）</a><ul>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_2">2.1 运行模式</a></li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_3">2.2 JQuery支持CORS</a></li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_4">2.3 与JSONP相比</a></li>
+</ul>
+</li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_5">3. 跨域访问在点评的应用</a></li>
+<li><a href="http://blog.brucefeng.info/post/web-crossdomain-2016#toc_6">References</a></li>
+</ul>
+        
+          <a class="article-more-a" href="/2016/11/03/Others/前端跨域访问/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">跨域</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/11/03/Others/前端跨域访问/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Framework/AngularJS/directive" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/03/Framework/AngularJS/directive/">Directive的基本使用</a>
+    </h1>
+  
+
+        
+        <a href="/2016/10/03/Framework/AngularJS/directive/" class="archive-article-date">
+  	<time datetime="2016-10-03T13:50:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="angular-directive"><a href="#angular-directive" class="headerlink" title="angular  directive"></a>angular  directive</h2><p>什么是指令呢？我们先看官方的说法</p>
+<h5 id="What-are-Directives"><a href="#What-are-Directives" class="headerlink" title="What are Directives?"></a>What are Directives?</h5><p>At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS’s <strong>HTML compiler</strong> (<a href="https://docs.angularjs.org/api/ng/service/$compile"><code>$compile</code></a>) to attach a specified behavior to that DOM element (e.g. via event listeners), or even to transform the DOM element and its children.</p>
+<p>AngularJS comes with a set of these directives built-in, like <code>ngBind</code>, <code>ngModel</code>, and <code>ngClass</code>. Much like you create controllers and services, you can create your own directives for AngularJS to use. When AngularJS <a href="https://docs.angularjs.org/guide/bootstrap">bootstraps</a> your application, the <a href="https://docs.angularjs.org/guide/compiler">HTML compiler</a> traverses the DOM matching directives against the DOM elements.</p>
+        
+          <a class="article-more-a" href="/2016/10/03/Framework/AngularJS/directive/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/10/03/Framework/AngularJS/directive/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-CSS预编译工具/Sass/Sass用法指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/03/CSS预编译工具/Sass/Sass用法指南/">Sass方法指南</a>
+    </h1>
+  
+
+        
+        <a href="/2016/10/03/CSS预编译工具/Sass/Sass用法指南/" class="archive-article-date">
+  	<time datetime="2016-10-03T12:01:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://www.ruanyifeng.com/blog/2012/06/sass.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2012/06/sass.html</a></p>
+<h2 id="一、什么是SASS"><a href="#一、什么是SASS" class="headerlink" title="一、什么是SASS"></a>一、什么是SASS</h2><p><a href="http://sass-lang.com/" target="_blank" rel="external">SASS</a>是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。</p>
+<p>本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看<a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html" target="_blank" rel="external">官方文档</a>了。</p>
+<h2 id="二、安装和使用"><a href="#二、安装和使用" class="headerlink" title="二、安装和使用"></a>二、安装和使用</h2><h3 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h3><p>SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先<a href="http://www.ruby-lang.org/zh_cn/downloads/" target="_blank" rel="external">安装Ruby</a>，然后再安装SASS。</p>
+<p>假定你已经安装好了Ruby，接着在命令行输入下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install sass</div></pre></td></tr></table></figure>
+<p>然后，就可以使用了。</p>
+<h3 id="2-2-使用"><a href="#2-2-使用" class="headerlink" title="2.2 使用"></a>2.2 使用</h3><p>SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。</p>
+<p>下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sass test.scss</div><div class="line">``` </div><div class="line"></div><div class="line">如果要将显示结果保存成文件，后面再跟一个.css文件名。</div><div class="line"></div><div class="line">```bash</div><div class="line">sass test.scss test.css</div></pre></td></tr></table></figure>
+<p>SASS提供四个<a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#output_style" target="_blank" rel="external">编译风格</a>的选项：</p>
+<ul>
+<li>nested：嵌套缩进的css代码，它是默认值。</li>
+<li>expanded：没有缩进的、扩展的css代码。</li>
+<li>compact：简洁格式的css代码。</li>
+<li>compressed：压缩后的css代码。</li>
+</ul>
+<p>生产环境当中，一般使用最后一个选项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sass --style compressed test.sass test.css</div></pre></td></tr></table></figure>
+<p>你也可以让SASS监听某个文件或目录，一旦源文件有变动，就自动生成编译后的版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># watch a file</span></div><div class="line">sass --watch input.scss:output.css</div><div class="line"><span class="comment"># watch a directory</span></div><div class="line">sass --watch app/sass:public/stylesheets</div></pre></td></tr></table></figure>
+<p>SASS的官方网站，提供了一个<a href="http://sass-lang.com/try.html" target="_blank" rel="external">在线转换器</a>。你可以在那里，试运行下面的各种例子。</p>
+<h2 id="三、基本用法"><a href="#三、基本用法" class="headerlink" title="三、基本用法"></a>三、基本用法</h2><h3 id="3-1-变量"><a href="#3-1-变量" class="headerlink" title="3.1 变量"></a>3.1 变量</h3><p>SASS允许使用变量，所有变量以$开头。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$blue</span> : <span class="number">#1875e7</span>;</div><div class="line"></div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">color</span> : <span class="variable">$blue</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$side</span> : left;</div><div class="line">rounded &#123;</div><div class="line">  <span class="attribute">border</span>-#&#123;<span class="variable">$side</span>&#125;-radius: <span class="number">5px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-2-计算功能"><a href="#3-2-计算功能" class="headerlink" title="3.2 计算功能"></a>3.2 计算功能</h3><p>SASS允许在代码中使用算式：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: (<span class="number">14px</span>/<span class="number">2</span>);</div><div class="line">  <span class="attribute">top</span>: <span class="number">50px</span> + <span class="number">100px</span>;</div><div class="line">  <span class="attribute">right</span>: <span class="variable">$var</span> * <span class="number">10%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-3-嵌套"><a href="#3-3-嵌套" class="headerlink" title="3.3 嵌套"></a>3.3 嵌套</h3><p>SASS允许选择器嵌套。比如，下面的CSS代码：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> <span class="selector-tag">h1</span> &#123;</div><div class="line">  <span class="attribute">color</span> : red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以写成：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  hi &#123;</div><div class="line">    <span class="attribute">color</span>:red;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>属性也可以嵌套，比如border-color属性，可以写成：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">border</span>: &#123;</div><div class="line">    color: red;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，border后面必须加上冒号。</p>
+<p>在嵌套的代码块内，可以使用&amp;引用父元素。比如a:hover伪类，可以写成：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">  &amp;:hover &#123; <span class="attribute">color</span>: <span class="number">#ffb3ff</span>; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-4-注释"><a href="#3-4-注释" class="headerlink" title="3.4 注释"></a>3.4 注释</h3><p>SASS共有两种注释风格。</p>
+<p>标准的CSS注释 /<em> comment </em>/ ，会保留到编译后的文件。</p>
+<p>单行注释 // comment，只保留在SASS源文件中，编译后被省略。</p>
+<p>在<code>/*</code>后面加一个感叹号，表示这是”重要注释”。即使是压缩模式编译，也会保留这行注释，通常可以用于声明版权信息。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*! </span></div><div class="line">  重要注释！</div><div class="line">*/</div></pre></td></tr></table></figure>
+<h2 id="四、代码的重用"><a href="#四、代码的重用" class="headerlink" title="四、代码的重用"></a>四、代码的重用</h2><h3 id="4-1-继承"><a href="#4-1-继承" class="headerlink" title="4.1 继承"></a>4.1 继承</h3><p>SASS允许一个选择器，继承另一个选择器。比如，现有class1：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.class1</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>class2要继承class1，就要使用@extend命令：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.class2</span> &#123;</div><div class="line">  @<span class="keyword">extend</span> .class1;</div><div class="line">  <span class="attribute">font-size</span>:<span class="number">120%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="4-2-Mixin"><a href="#4-2-Mixin" class="headerlink" title="4.2 Mixin"></a>4.2 Mixin</h3><p>Mixin有点像C语言的宏（macro），是可以重用的代码块。</p>
+<p>使用@mixin命令，定义一个代码块。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">mixin</span> left &#123;</div><div class="line">  <span class="attribute">float</span>: left;</div><div class="line">  <span class="attribute">margin-left</span>: <span class="number">10px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用@include命令，调用这个mixin。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  @<span class="keyword">include</span> left;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>mixin的强大之处，在于可以指定参数和缺省值。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">mixin</span> left(<span class="variable">$value</span>: 10px) &#123;</div><div class="line">  <span class="attribute">float</span>: left;</div><div class="line">  <span class="attribute">margin-right</span>: <span class="variable">$value</span>;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line"></div><div class="line">使用的时候，根据需要加入参数：</div><div class="line"></div><div class="line">```scss</div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  @<span class="keyword">include</span> left(<span class="number">20px</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面是一个mixin的实例，用来生成浏览器前缀。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">mixin</span> rounded(<span class="variable">$vert</span>, <span class="variable">$horz</span>, <span class="variable">$radius</span>: 10px) &#123;</div><div class="line">  <span class="attribute">border</span>-#&#123;<span class="variable">$vert</span>&#125;-#&#123;<span class="variable">$horz</span>&#125;-radius: <span class="variable">$radius</span>;</div><div class="line">  -moz-<span class="attribute">border-radius</span>-#&#123;<span class="variable">$vert</span>&#125;#&#123;<span class="variable">$horz</span>&#125;: <span class="variable">$radius</span>;</div><div class="line">  -webkit-<span class="attribute">border</span>-#&#123;<span class="variable">$vert</span>&#125;-#&#123;<span class="variable">$horz</span>&#125;-radius: <span class="variable">$radius</span>;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line"></div><div class="line">使用的时候，可以像下面这样调用：</div><div class="line"></div><div class="line">```scss</div><div class="line"><span class="selector-id">#navbar</span> <span class="selector-tag">li</span> &#123; @<span class="keyword">include</span> rounded(top, left); &#125;</div><div class="line"></div><div class="line"><span class="selector-id">#footer</span> &#123; @<span class="keyword">include</span> rounded(top, left, 5px); &#125;</div><div class="line">``` </div><div class="line"></div><div class="line">### 4<span class="selector-class">.3</span> 颜色函数</div><div class="line"></div><div class="line">SASS提供了一些内置的颜色函数，以便生成系列颜色。</div><div class="line"></div><div class="line">```scss</div><div class="line">lighten(<span class="selector-id">#cc3</span>, 10%) <span class="comment">// #d6d65c</span></div><div class="line">darken(<span class="selector-id">#cc3</span>, 10%) <span class="comment">// #a3a329</span></div><div class="line">grayscale(<span class="selector-id">#cc3</span>) <span class="comment">// #808080</span></div><div class="line">complement(<span class="selector-id">#cc3</span>) <span class="comment">// #33c</span></div></pre></td></tr></table></figure>
+<h3 id="4-4-插入文件"><a href="#4-4-插入文件" class="headerlink" title="4.4 插入文件"></a>4.4 插入文件</h3><p>@import命令，用来插入外部文件。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> <span class="string">"path/filename.scss"</span>;</div></pre></td></tr></table></figure>
+<p>如果插入的是.css文件，则等同于css的import命令。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> <span class="string">"foo.css"</span>;</div></pre></td></tr></table></figure>
+<h2 id="五、高级用法"><a href="#五、高级用法" class="headerlink" title="五、高级用法"></a>五、高级用法</h2><h3 id="5-1-条件语句"><a href="#5-1-条件语句" class="headerlink" title="5.1 条件语句"></a>5.1 条件语句</h3><p>@if可以用来判断：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  @<span class="keyword">if</span> 1 + 1 == 2 &#123; <span class="attribute">border</span>: <span class="number">1px</span> solid; &#125;</div><div class="line">  @<span class="keyword">if</span> 5 &lt; 3 &#123; <span class="attribute">border</span>: <span class="number">2px</span> dotted; &#125;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line"></div><div class="line">配套的还有@<span class="keyword">else</span>命令：</div><div class="line"></div><div class="line">```scss</div><div class="line">@<span class="keyword">if</span> lightness(<span class="variable">$color</span>) &gt; 30% &#123;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#000</span>;</div><div class="line">&#125; @<span class="keyword">else</span> &#123;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="5-2-循环语句"><a href="#5-2-循环语句" class="headerlink" title="5.2 循环语句"></a>5.2 循环语句</h3><p>SASS支持for循环：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">for</span> <span class="variable">$i</span> from 1 to 10 &#123;</div><div class="line"> <span class="selector-class">.border-</span>#&#123;<span class="variable">$i</span>&#125; &#123;</div><div class="line">    <span class="attribute">border</span>: #&#123;<span class="variable">$i</span>&#125;px solid blue;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>也支持while循环：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$i</span>: <span class="number">6</span>;</div><div class="line">@<span class="keyword">while</span> <span class="variable">$i</span> &gt; 0 &#123;</div><div class="line">  item-#&#123;<span class="variable">$i</span>&#125; &#123; <span class="attribute">width</span>: <span class="number">2em</span> * <span class="variable">$i</span>; &#125;</div><div class="line">  <span class="variable">$i</span>: <span class="variable">$i</span> - <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>each命令，作用与for类似：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">each</span> <span class="variable">$member</span> in a, b, c, d &#123;</div><div class="line">  .#&#123;<span class="variable">$member</span>&#125; &#123;</div><div class="line">    <span class="attribute">background-image</span>: url(<span class="string">"/image/#&#123;$member&#125;.jpg"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="5-3-自定义函数"><a href="#5-3-自定义函数" class="headerlink" title="5.3 自定义函数"></a>5.3 自定义函数</h3><p>SASS允许用户编写自己的函数。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@function double(<span class="variable">$n</span>) &#123;</div><div class="line">  @return <span class="variable">$n</span> * 2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#sidebar</span> &#123;</div><div class="line">  <span class="attribute">width</span>: double(<span class="number">5px</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Sass,CSS预编译</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/10/03/CSS预编译工具/Sass/Sass用法指南/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/深入理解javascript之编写高质量javascript代码的基本要点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/">深入理解javascript之编写高质量javascript代码的基本要点</a>
+    </h1>
+  
+
+        
+        <a href="/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/" class="archive-article-date">
+  	<time datetime="2016-10-01T13:50:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>才华横溢的<a href="http://www.phpied.com/">Stoyan Stefanov</a>，在他写的由<a href="http://oreilly.com/">O’Reilly</a>初版的新书<a href="http://amzn.to/93szK7">《JavaScript Patterns》</a>(JavaScript模式)中，我想要是为我们的读者贡献其摘要，那会是件很美妙的事情。具体一点就是编写高质量JavaScript的一些要素，例如避免全局变量，使用单变量声明，在循环中预缓存length(长度)，遵循代码阅读，以及更多。</p>
+<p>此摘要也包括一些与代码不太相关的习惯，但对整体代码的创建息息相关，包括撰写API文档、执行同行评审以及运行JSLint。这些习惯和最佳做法可以帮助你写出更好的，更易于理解和维护的代码，这些代码在几个月或是几年之后再回过头看看也是会觉得很自豪的。</p>
+        
+          <a class="article-more-a" href="/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/10/01/JavaScript/深入理解javascript之编写高质量javascript代码的基本要点/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Framework/Node/node的安装和npm的简单介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/06/Framework/Node/node的安装和npm的简单介绍/">node的安装和npm的简单介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/06/Framework/Node/node的安装和npm的简单介绍/" class="archive-article-date">
+  	<time datetime="2016-03-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="下载nodejs"><a href="#下载nodejs" class="headerlink" title="下载nodejs"></a>下载nodejs</h2><p>打开<a href="https://nodejs.org/en/">nodejs官网</a>，你会看到两个绿色的按钮，一个是目前大多数人在用的，一个是目前最新的版本，的需要下载即可，它会根据系统信息选择对应版本（.msi文件）。然后像安装QQ一样安装它就可以了（安装路径随意）</p>
+<h2 id="检测nodejs是否安装上了"><a href="#检测nodejs是否安装上了" class="headerlink" title="检测nodejs是否安装上了"></a>检测nodejs是否安装上了</h2><p>打开命令提示符执行下列命令（打开方式：window + r 输入cmd回车）：</p>
+<ul>
+<li>node -v查看安装的nodejs版本，出现版本号，说明刚刚已正确安装nodejs。</li>
+<li>npm -v查看npm的版本号，npm是在安装nodejs时一同安装的nodejs包管理器。</li>
+<li>如果输入命令后告诉你node不是内部命令，那么请看下步配置环境变量</li>
+<li>如果上述都能正常执行，恭喜你，安装成功了</li>
+</ul>
+        
+          <a class="article-more-a" href="/2016/03/06/Framework/Node/node的安装和npm的简单介绍/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">nodejs</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/06/Framework/Node/node的安装和npm的简单介绍/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hexo/hexo图片链接问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/14/Hexo/hexo图片链接问题/">hexo图片链接问题</a>
+    </h1>
+  
+
+        
+        <a href="/2015/03/14/Hexo/hexo图片链接问题/" class="archive-article-date">
+  	<time datetime="2015-03-14T13:03:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>文章转载自 <a href="http://www.tuicool.com/articles/umEBVfI">http://www.tuicool.com/articles/umEBVfI</a></p>
+<h2 id="1-起因"><a href="#1-起因" class="headerlink" title="1. 起因"></a>1. 起因</h2><p>在 hexo 中使用本地图片是件非常让人纠结的事情，在 markdown 里的图片地址似乎永远无法和最后生成的网页保持一致。</p>
+<p>这些问题使得我一度不愿意使用本地图片而选择用图床，但被移动运营商无耻的横条广告逼得打算上 https，图床只支持 http 就成了问题。</p>
+<p>hexo 下插入图片现在大概有几个方案</p>
+        
+          <a class="article-more-a" href="/2015/03/14/Hexo/hexo图片链接问题/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/03/14/Hexo/hexo图片链接问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/javascript之变量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/10/JavaScript/javascript之变量/">javascript之变量</a>
+    </h1>
+  
+
+        
+        <a href="/2015/03/10/JavaScript/javascript之变量/" class="archive-article-date">
+  	<time datetime="2015-03-10T13:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="变量的定义"><a href="#变量的定义" class="headerlink" title="变量的定义"></a>变量的定义</h2><p>在javascript中定义变脸是通过关键字 <code>var</code>、<code>function</code> 定义的，在ES6中还可以用<code>let</code>、<code>const</code> 的方式定义变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var str = &quot;hello world&quot;; // 定义了一个值为“hello world”的String类型变量</div><div class="line">var num = 10; // 定义了一个值为10的Number类型变量</div><div class="line">var boolean = true; // 定义了一个值为true的Boolean类型变量</div><div class="line">function ()&#123; // 定义一个Function类型，名为fn的函数</div><div class="line">  // 函数体</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2015/03/10/JavaScript/javascript之变量/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/03/10/JavaScript/javascript之变量/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript/javascript之基本介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/05/JavaScript/javascript之基本介绍/">javascript之基本介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2015/03/05/JavaScript/javascript之基本介绍/" class="archive-article-date">
+  	<time datetime="2015-03-05T13:23:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="javascript语言特点"><a href="#javascript语言特点" class="headerlink" title="javascript语言特点"></a>javascript语言特点</h2><ol>
+<li>javascript是一门弱类型、动态类型、解析型的脚本语言<ul>
+<li>弱类型：定义变量不需要指定变量类型</li>
+<li>动态类型：<ul>
+<li>执行时才知道变量到底是什么类型</li>
+<li>对象想要有属性或方法，直接 <strong>.</strong> 或者[“属性名”]就可以</li>
+</ul>
+</li>
+<li>解析型：一行一行解析，解析一行执行一行</li>
+<li>脚本语言：不需要编译，直接运行时边解析边执行的语言<ul>
+<li>编译：一次性把代码转换成cpu可以看懂的语言，一行一行执行，执行速度快</li>
+<li>解释：一行一行解析，解析一行执行一行，执行速度慢 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>javascript是一种客户端的脚本语言</li>
+</ol>
+        
+          <a class="article-more-a" href="/2015/03/05/JavaScript/javascript之基本介绍/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/03/05/JavaScript/javascript之基本介绍/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Hexo/hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -307,11 +986,27 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">简历,求职,web前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前端,资源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript,es6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模块化,CMD,AMD,CommonJS,seajs,requireJS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -323,7 +1018,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular</a>
+                <a href="javascript:void(0)" class="js-tag color3">Webpack,Gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CSS,JavaScript,面试题目</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Sass,CSS预编译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -331,11 +1038,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">express,node</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">express,node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -355,19 +1066,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Webpack,Gulp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack,打包工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue,vuex</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack,打包工具</a>
               </li>
             
             <div class="clearfix"></div>
@@ -452,6 +1159,10 @@
           
             <li class="search-li">
               <a href="http://lanterncn.cn/down" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>蓝灯工作站</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://jeffjade.com/archives/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>晚晴幽草轩</a>
             </li>
           
         </ul>

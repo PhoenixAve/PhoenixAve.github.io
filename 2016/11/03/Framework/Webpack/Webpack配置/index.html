@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>webpack配置 | PhoenixAve</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="全局安装webpack配置webpack.config.js文件1234567891011121314151617181920212223242526var path = require(&apos;path&apos;)var webpack = require(&apos;webpack&apos;)module.exports = &amp;#123;  entry: &amp;#123;    app: &apos;./src/main.js&apos; // 文">
+  <meta name="description" content="全局安装webpack配置webpack.config.js文件123456789101112131415161718192021222324252627282930var path = require(&apos;path&apos;)var webpack = require(&apos;webpack&apos;)module.exports = &amp;#123;//-----------------------配置程序入口文件---">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack配置">
 <meta property="og:url" content="http://yoursite.com/2016/11/03/Framework/Webpack/Webpack配置/index.html">
 <meta property="og:site_name" content="PhoenixAve">
-<meta property="og:description" content="全局安装webpack配置webpack.config.js文件1234567891011121314151617181920212223242526var path = require(&apos;path&apos;)var webpack = require(&apos;webpack&apos;)module.exports = &amp;#123;  entry: &amp;#123;    app: &apos;./src/main.js&apos; // 文">
-<meta property="og:updated_time" content="2017-03-27T01:58:44.245Z">
+<meta property="og:description" content="全局安装webpack配置webpack.config.js文件123456789101112131415161718192021222324252627282930var path = require(&apos;path&apos;)var webpack = require(&apos;webpack&apos;)module.exports = &amp;#123;//-----------------------配置程序入口文件---">
+<meta property="og:updated_time" content="2017-03-27T07:21:42.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack配置">
-<meta name="twitter:description" content="全局安装webpack配置webpack.config.js文件1234567891011121314151617181920212223242526var path = require(&apos;path&apos;)var webpack = require(&apos;webpack&apos;)module.exports = &amp;#123;  entry: &amp;#123;    app: &apos;./src/main.js&apos; // 文">
+<meta name="twitter:description" content="全局安装webpack配置webpack.config.js文件123456789101112131415161718192021222324252627282930var path = require(&apos;path&apos;)var webpack = require(&apos;webpack&apos;)module.exports = &amp;#123;//-----------------------配置程序入口文件---">
   
     <link rel="alternative" href="/atom.xml" title="PhoenixAve" type="application/atom+xml">
   
@@ -177,7 +177,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="全局安装webpack"><a href="#全局安装webpack" class="headerlink" title="全局安装webpack"></a>全局安装webpack</h2><h2 id="配置webpack-config-js文件"><a href="#配置webpack-config-js文件" class="headerlink" title="配置webpack.config.js文件"></a>配置webpack.config.js文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./src/main.js'</span> <span class="comment">// 文件入口</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: path.resolve(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].js'</span>,  <span class="comment">// 最终编译后的js文件</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// 配置自动刷新相关内容</span></div><div class="line">  devtooll: <span class="string">'eval'</span>,</div><div class="line">  <span class="attr">devServer</span>: &#123;</div><div class="line">    <span class="attr">contentBase</span>: __dirname + <span class="string">'/src'</span>,</div><div class="line">	<span class="attr">hot</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">inline</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">port</span>: <span class="number">8080</span>,</div><div class="line">	<span class="attr">host</span>: <span class="string">'localhost'</span>,</div><div class="line">	<span class="attr">historyApiFallback</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">noInfo</span>: <span class="literal">false</span>,</div><div class="line">	<span class="comment">// stats: 'minimal',</span></div><div class="line">	<span class="comment">// publicPath: publicPath</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: &#123;</div><div class="line">  	<span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+        <h2 id="全局安装webpack"><a href="#全局安装webpack" class="headerlink" title="全局安装webpack"></a>全局安装webpack</h2><h2 id="配置webpack-config-js文件"><a href="#配置webpack-config-js文件" class="headerlink" title="配置webpack.config.js文件"></a>配置webpack.config.js文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line"><span class="comment">//-----------------------配置程序入口文件-----------------------</span></div><div class="line">  entry: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./src/main.js'</span> <span class="comment">// 文件入口</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">//------------------------配置编译后的文件----------------------</span></div><div class="line">  output: &#123;</div><div class="line">    <span class="attr">path</span>: path.resolve(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].js'</span>,  <span class="comment">// 最终编译后的js文件</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">//-----------------------配置自动刷新相关内容-----------------------</span></div><div class="line">  devtooll: <span class="string">'eval'</span>,</div><div class="line">  <span class="attr">devServer</span>: &#123;</div><div class="line">    <span class="attr">contentBase</span>: __dirname + <span class="string">'/src'</span>,</div><div class="line">	<span class="attr">hot</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">inline</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">port</span>: <span class="number">8080</span>,</div><div class="line">	<span class="attr">host</span>: <span class="string">'localhost'</span>,</div><div class="line">	<span class="attr">historyApiFallback</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">noInfo</span>: <span class="literal">false</span>,</div><div class="line">	<span class="comment">// stats: 'minimal',</span></div><div class="line">	<span class="comment">// publicPath: publicPath</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">//---------------------------各种插件-----------------------------</span></div><div class="line">  plugins: &#123;</div><div class="line">  	<span class="comment">// 自动刷新插件</span></div><div class="line">  	<span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
       
 
       
@@ -281,18 +281,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/11/03/Others/前端跨域访问/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/11/12/Others/免费更新win10/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          前端跨域访问
+          windows 免费升级win10
         
       </div>
     </a>
   
   
-    <a href="/2016/10/03/Framework/AngularJS/directive/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Directive的基本使用</div>
+    <a href="/2016/11/03/Others/前端跨域访问/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端跨域访问</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -396,11 +396,27 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">简历,求职,web前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前端,资源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript,es6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模块化,CMD,AMD,CommonJS,seajs,requireJS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -412,7 +428,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular</a>
+                <a href="javascript:void(0)" class="js-tag color3">Webpack,Gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CSS,JavaScript,面试题目</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Sass,CSS预编译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -420,11 +448,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">express,node</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">express,node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -444,19 +476,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Webpack,Gulp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack,打包工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue,vuex</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack,打包工具</a>
               </li>
             
             <div class="clearfix"></div>
@@ -541,6 +569,10 @@
           
             <li class="search-li">
               <a href="http://lanterncn.cn/down" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>蓝灯工作站</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://jeffjade.com/archives/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>晚晴幽草轩</a>
             </li>
           
         </ul>
